@@ -1,7 +1,7 @@
 # CauseConnect
 
 ## Introduction
-CauseConnect is a web application designed to strengthen connections within non-profit organizations. It offers a simple platform to view and engage with members of an association, allowing users to track who they've met and who they have yet to meet. Users can easily manage their social preferences, create profiles, and explore the connections within their community.
+CauseConnect is a web application designed to strengthen connections within members of non-profit organizations. It offers a simple platform to view and engage with members of an association. Users can easily manage their social preferences, create profiles, and explore the connections within their community.
 
 ## Features
 - **Simple Login System:** Secure authentication for user access.
