@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Users</title>
+</head>
+<body>
+    <h1>All Users</h1>
+    <ul>
+        <% users.forEach(user => { %>
+            <li>
+                Username: <%= user.username %>
+                <!-- I can add more fields here as needed -->
+            </li>
+        <% }); %>
+    </ul>
+</body>
+</html>
