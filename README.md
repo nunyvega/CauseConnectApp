@@ -5,7 +5,7 @@ CauseConnect is a web application designed to strengthen connections within memb
 
 ## Features
 - **Simple Login System:** Secure authentication for user access.
-- **Homepage:** Displays the count of members met and provides calls to action to meet more members, view met members, and update met members.
+- **Homepage:** Displays the members met and provides calls to action to meet more members, view met members, and update met members.
 - **User Profile:** Customize and manage personal preferences, hobbies, and greeting styles.
 - **Member Profiles:** View the social preferences and profiles of other members.
 
