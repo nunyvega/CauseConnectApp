@@ -56,4 +56,4 @@ Feel free to contribute to CauseConnect by submitting pull requests or creating 
 ISC
 
 ## Author
-Alvaro Vega / [Your GitHub Profile](https://github.com/nunyvega)
+Alvaro Vega / [@nunyvega](https://github.com/nunyvega)
