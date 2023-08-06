@@ -8,6 +8,8 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const User = require('./models/User');
 const flash = require('connect-flash');
+const Connection = require('./models/Connection');
+const ensureAuthenticated = require('./middleware/authMiddleware');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -103,9 +105,32 @@ app.use('/users', userRoutes);
 const connectionRoutes = require('./routes/connectionRoutes');
 app.use('/connections', connectionRoutes);
 
-app.get('/', (req, res) => {
-  res.render('home');
+
+app.get('/', ensureAuthenticated, async (req, res) => {
+  // Assuming that the authenticated user's info is stored in req.user
+  const currentUserId = req.user._id;
+
+  // Get the total number of users, excluding the current user
+  const totalUsers = await User.countDocuments({ _id: { $ne: currentUserId } });
+
+  // Get the total number of connections involving the current user
+  const totalConnections = await Connection.countDocuments({
+    $or: [
+      { user1: currentUserId },
+      { user2: currentUserId }
+    ]
+  });
+
+  // Calculate the percentage
+  const percentageMet = totalUsers ? (totalConnections / totalUsers) * 100 : 0;
+
+  res.render('home', {
+    percentageMet: percentageMet,
+    totalUsers: totalUsers,
+    metUsers: totalConnections // This represents the number of users met
+  });
 });
+
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);

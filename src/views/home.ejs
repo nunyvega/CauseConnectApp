@@ -4,9 +4,65 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CauseConnect</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .navbar {
+            background-color: #f0f0f0;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .navbar img {
+            height: 50px;
+        }
+        .main-section {
+            text-align: center;
+            margin: 50px;
+        }
+        .percentage-circle {
+            width: 200px;
+            height: 200px;
+            border: 10px solid #00aaff;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto;
+            font-size: 36px;
+        }
+        .cta-buttons {
+            margin: 20px;
+        }
+        .cta-button {
+            padding: 10px 20px;
+            background-color: #00aaff;
+            color: #fff;
+            text-decoration: none;
+            margin: 10px;
+            border-radius: 5px;
+        }
+    </style>
 </head>
 <body>
-    <h1>Welcome to CauseConnect</h1>
-    <p>Connect with members of your non-profit organization.</p>
+    <div class="navbar">
+        <img src="path/to/your/logo.png" alt="CauseConnect Logo">
+        <a href="/preferences">Preferences/Profile</a>
+    </div>
+    <div class="main-section">
+        <div class="percentage-circle">
+            <%= percentageMet.toFixed(0) %>%
+        </div>
+        <p><%= Math.round(percentageMet * totalUsers / 100) %> of <%= totalUsers %> members met</p>
+        <div class="cta-buttons">
+            <a href="/meet-more-members" class="cta-button">Meet more members</a>
+            <a href="/members-met" class="cta-button">Members you met</a>
+            <a href="/connections/all" class="cta-button">Update members met</a>
+        </div>
+    </div>
 </body>
 </html>
