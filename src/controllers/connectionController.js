@@ -5,9 +5,6 @@ exports.markMet = async (req, res) => {
     const currentUserId = req.user._id; // This assumes the authenticated user's info is stored in req.user
     const metUserId = req.body.userId;
   
-    // select all connections 
-    allConnections = await Connection.find();
-    console.log('todas las conexiones son: ', allConnections);
     try {
       // Check if the connection already exists
       const existingConnection = await Connection.findOne({
@@ -30,9 +27,36 @@ exports.markMet = async (req, res) => {
         console.log('existe')
       }
   
-      res.redirect('/users/all');
+      res.redirect('/connections/all');
     } catch (error) {
       console.error(error);
       res.status(500).send('An error occurred');
     }
   };
+
+  exports.markUnmet = async (req, res) => {
+    const currentUserId = req.user._id; // Assuming the authenticated user's info is stored in req.user
+    const unmetUserId = req.body.userId;
+  
+    try {
+      // Find and remove the connection
+      const existingConnection = await Connection.findOneAndRemove({
+        $or: [
+          { user1: currentUserId, user2: unmetUserId },
+          { user1: unmetUserId, user2: currentUserId },
+        ],
+      });
+  
+      if (existingConnection) {
+        console.log('Connection removed');
+      } else {
+        console.log('Connection not found');
+      }
+  
+      res.redirect('/connections/all');
+    } catch (error) {
+      console.error(error);
+      res.status(500).send('An error occurred');
+    }
+  };
+  

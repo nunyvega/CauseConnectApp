@@ -89,7 +89,7 @@ app.get('/register', (req, res) => {
 
 app.post('/login',
   passport.authenticate('local', {
-    successRedirect: '/users/all', // Redirect to the desired route after successful login. For the moment I'm testing the met people page
+    successRedirect: '/connections/all', // Redirect to the desired route after successful login. For the moment I'm testing the met people page
     failureRedirect: '/login', 
     failureFlash: 'Invalid username or password.' 
   })

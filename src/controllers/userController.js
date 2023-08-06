@@ -7,7 +7,7 @@ exports.getAllUsers = async (req, res) => {
     } catch (err) {
       res.status(400).send(err.message);
     }
-  };
+};
   
   
 exports.updateUserPreferences = async (req, res) => {
@@ -18,11 +18,11 @@ exports.updateUserPreferences = async (req, res) => {
     } catch (err) {
       res.status(400).json({ error: err.message });
     }
-  };
+};
 
-  exports.renderPreferencesPage = (req, res) => {
-    res.render('preferences');
-  };
+exports.renderPreferencesPage = (req, res) => {
+  res.render('preferences');
+};
 
 exports.getUserPreferences = async function(userId) {
     const user = await User.findById(userId);
