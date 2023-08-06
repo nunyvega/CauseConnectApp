@@ -9,10 +9,20 @@
     <h1>All Users</h1>
     <ul>
         <% users.forEach(user => { %>
-            <li>
-                Username: <%= user.username %>
-                <!-- I can add more fields here as needed -->
-            </li>
+            <% if(user._id !== currentUser._id) { %>
+                <li>
+                    Username: <%= user.username %>
+                    <!-- Check if the user has been met -->
+                    <% if (currentUser.metUsers && currentUser.metUsers.includes(user._id)) { %>
+                        <span>Met</span>
+                    <% } else { %>
+                        <form action="/connections/markMet" method="post">
+                            <input type="hidden" name="userId" value="<%= user._id %>">
+                            <button type="submit">Mark as Met</button>
+                        </form>
+                    <% } %>
+                </li>
+            <% } %>
         <% }); %>
     </ul>
 </body>

@@ -89,7 +89,7 @@ app.get('/register', (req, res) => {
 
 app.post('/login',
   passport.authenticate('local', {
-    successRedirect: '/users/preferences', // Redirect to the desired route after successful login. For the moment I'm testing the preferences page
+    successRedirect: '/users/all', // Redirect to the desired route after successful login. For the moment I'm testing the met people page
     failureRedirect: '/login', 
     failureFlash: 'Invalid username or password.' 
   })
@@ -100,6 +100,8 @@ const authRoutes = require('./routes/authRoutes');
 app.use('/auth', authRoutes);
 const userRoutes = require('./routes/userRoutes');
 app.use('/users', userRoutes);
+const connectionRoutes = require('./routes/connectionRoutes');
+app.use('/connections', connectionRoutes);
 
 app.get('/', (req, res) => {
   res.render('home');
