@@ -1,4 +1,63 @@
-<form action="/users/preferences" method="post">
+<head>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+    }
+    form {
+      max-width: 600px;
+      margin: 2rem auto;
+      padding: 2rem;
+      background-color: #ffffff;
+      border: 1px solid #e0e0e0;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    }
+    label, input, select {
+      display: block;
+      margin-bottom: 1rem;
+      width: 100%;
+    }
+    input, select {
+      padding: 0.5rem;
+      border: 1px solid #e0e0e0;
+    }
+    button {
+      background-color: #007bff;
+      color: #ffffff;
+      border: none;
+      padding: 0.75rem 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    .navbar {
+      background-color: #007bff;
+      padding: 1rem;
+      color: #ffffff;
+    }
+    .navbar a {
+      color: #ffffff;
+      margin: 0 1rem;
+      text-decoration: none;
+    }
+    .navbar .logo h1 {
+      color: #ffffff;
+      margin: 0;
+    }
+  </style>
+</head>
+
+<%- include('partials/header') %>
+
+<% if (successMessage && successMessage.length > 0) { %>
+  <div class="success-message">
+    <%= successMessage %>
+  </div>
+<% } %>
+
+<form action="/user/preferences" method="post">
   <label for="name">Name:</label>
   <input type="text" name="name" value="<%= preferences.name || '' %>" required>
 
@@ -27,5 +86,5 @@
     <option value="wave" <%= preferences.preferredGreeting === 'wave' ? 'selected' : '' %>>Wave</option>
   </select>
 
-  <button type="submit">Update Preferences</button>
+  <button type="submit">Update Profile & Preferences</button>
 </form>

@@ -13,11 +13,20 @@ function isAuthenticated(req, res, next) {
   
 router.post('/preferences', userController.updateUserPreferences);
 //router.get('/preferences', isAuthenticated, userController.renderPreferencesPage);
-router.get('/preferences', isAuthenticated,  (req, res) => {
-  // Get the user preferences
-  const preferences = userController.getUserPreferences(req.user.id);
+router.get('/preferences', isAuthenticated, async (req, res) => {
+  try {
+    // Get the user preferences
+    console.log('fprefos');
+    const preferences = await userController.getUserPreferences(req.user.id);
 
-  // Render the view with the preferences
-  res.render('preferences', { preferences });
+   // Get flash messages
+   const successMessage = req.flash('success');
+   const errorMessage = req.flash('error');    // Render the view with the preferences
+    res.render('preferences', { preferences, successMessage, errorMessage });
+  } catch (error) {
+    console.error(error);
+    // Handle error (e.g., render an error page or redirect)
+    res.status(500).send('An error occurred while retrieving preferences');
+  }
 });
 module.exports = router;

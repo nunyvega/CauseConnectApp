@@ -3,12 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/styles.css"> <!-- Link to CSS file for styling when I create it -->
+    <link rel="stylesheet" href="/css/styles.css">
     <title>Login</title>
 </head>
-<body>
+<body>    
+    <%- include('partials/header-logged-out') %>
     <div class="login-container">
         <h1>Login</h1>
+        <% if (locals.success_msg) { %>
+            <div class="alert alert-success">
+              <%= success_msg %>
+            </div>
+          <% } %>
         <% if (error) { %>
             <div class="error-message">
                 <%= error %>

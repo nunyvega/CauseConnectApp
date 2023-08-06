@@ -14,10 +14,18 @@ exports.updateUserPreferences = async (req, res) => {
     try {
       const userId = req.user._id; // Assuming user ID is stored in req.user
       const user = await User.findByIdAndUpdate(userId, req.body, { new: true });
-      res.status(200).json({ user });
+ // Set a flash message for success
+ req.flash('success', 'Preferences updated successfully');
+
+ // Redirect back to the preferences page
+ res.redirect('/user/preferences');
+
+
     } catch (err) {
-      res.status(400).json({ error: err.message });
-    }
+      console.error(error);
+      // Handle error (e.g., set a flash message for the error and redirect back to the preferences page)
+      req.flash('error', 'An error occurred while updating preferences');
+      res.redirect('/user/preferences');    }
 };
 
 exports.renderPreferencesPage = (req, res) => {

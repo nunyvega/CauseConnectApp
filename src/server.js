@@ -91,7 +91,7 @@ app.get('/register', (req, res) => {
 
 app.post('/login',
   passport.authenticate('local', {
-    successRedirect: '/connections/all', // Redirect to the desired route after successful login. For the moment I'm testing the met people page
+    successRedirect: '/', // Redirect to the desired route after successful login. For the moment I'm testing the met people page
     failureRedirect: '/login', 
     failureFlash: 'Invalid username or password.' 
   })
@@ -101,7 +101,7 @@ app.post('/login',
 const authRoutes = require('./routes/authRoutes');
 app.use('/auth', authRoutes);
 const userRoutes = require('./routes/userRoutes');
-app.use('/users', userRoutes);
+app.use('/user', userRoutes);
 const connectionRoutes = require('./routes/connectionRoutes');
 app.use('/connections', connectionRoutes);
 
@@ -128,6 +128,20 @@ app.get('/', ensureAuthenticated, async (req, res) => {
     percentageMet: percentageMet,
     totalUsers: totalUsers,
     metUsers: totalConnections // This represents the number of users met
+  });
+});
+
+
+
+
+app.get('/logout', (req, res) => {
+  req.session.destroy(function (err) {
+    if (err) {
+      console.log(err);
+    }
+    // Optionally, you can clear the cookie containing the Express session ID
+    res.clearCookie('connect.sid');
+    res.redirect('/login'); // Redirect to the login page
   });
 });
 

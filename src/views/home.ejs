@@ -4,22 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CauseConnect</title>
+    <link rel="icon" href="icon.png">
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-        }
-        .navbar {
-            background-color: #f0f0f0;
-            padding: 10px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .navbar img {
-            height: 50px;
-        }
         .main-section {
             text-align: center;
             margin: 50px;
@@ -32,27 +18,35 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            margin: 0 auto;
+            margin: 20px auto;
             font-size: 36px;
+            color: #00aaff;
+            background-color: #ffffff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
         .cta-buttons {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             margin: 20px;
         }
         .cta-button {
-            padding: 10px 20px;
+            padding: 15px 30px;
             background-color: #00aaff;
             color: #fff;
             text-decoration: none;
             margin: 10px;
-            border-radius: 5px;
+            border-radius: 25px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        .cta-button:hover {
+            background-color: #007799;
         }
     </style>
 </head>
 <body>
-    <div class="navbar">
-        <img src="path/to/your/logo.png" alt="CauseConnect Logo">
-        <a href="/preferences">Preferences/Profile</a>
-    </div>
+    <%- include('partials/header') %>
     <div class="main-section">
         <div class="percentage-circle">
             <%= percentageMet.toFixed(0) %>%
