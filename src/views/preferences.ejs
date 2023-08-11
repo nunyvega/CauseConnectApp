@@ -48,7 +48,6 @@
     }
   </style>
 </head>
-
 <%- include('partials/header') %>
 
 <% if (successMessage && successMessage.length > 0) { %>
@@ -57,11 +56,26 @@
   </div>
 <% } %>
 
-<form action="/user/preferences" method="post">
+<form action="/user/preferences" method="post" enctype="multipart/form-data">
+  <!-- Display current profile picture -->
+  <!-- Current Profile Picture -->
+  <div>
+    <label>Current Profile Picture:</label>
+    <% if (preferences.profilePicture && preferences.profilePicture !== 'null') { %>
+      <img src="<%= preferences.profilePicture %>" alt="Current Profile Picture" width="150">
+    <% } else { %>
+      <p>No profile picture uploaded.</p>
+    <% } %>
+  </div>
+
+  
+  <!-- Add profile picture upload field -->
+  <label for="profilePicture">Profile Picture:</label>
+  <input type="file" name="profilePicture" id="profilePicture">
+
   <label for="name">Name:</label>
   <input type="text" name="name" value="<%= preferences.name || '' %>" required>
 
-  <!-- Other fields -->
   <label for="age">Age:</label>
   <input type="number" name="age" value="<%= preferences.age || '' %>">
 
@@ -85,6 +99,5 @@
     <option value="fist bump" <%= preferences.preferredGreeting === 'fist bump' ? 'selected' : '' %>>Fist Bump</option>
     <option value="wave" <%= preferences.preferredGreeting === 'wave' ? 'selected' : '' %>>Wave</option>
   </select>
-
   <button type="submit">Update Profile & Preferences</button>
 </form>

@@ -54,6 +54,8 @@
             <% if(user._id !== currentUser._id) { %>
                 <li>
                     Username: <%= user.username %>
+                    <img src="<%= user.profilePicture %>" alt="User's Profile Picture">
+
                     <% if (user.met) { %>
                         <form action="/connections/markUnmet" method="post">
                             <input type="hidden" name="userId" value="<%= user._id %>">

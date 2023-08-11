@@ -21,9 +21,11 @@ const userSchema = new mongoose.Schema({
     type: String,
     enum: ['hug', 'handshake', 'high five', 'fist bump', 'wave'],
     default: 'wave'
-  }
-  // Add other user-related fields as needed
-});
+  },
+  profilePicture: {
+    type: String,
+    default: '/uploads/profile.png'
+}});
 
 // Hashing the password before saving
 userSchema.pre('save', async function (next) {
