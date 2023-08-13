@@ -1,7 +1,6 @@
 const Connection = require('../models/Connection');
 
 exports.markMet = async (req, res) => {
-  console.log('la data es: ', req.body);
     const currentUserId = req.user._id; // This assumes the authenticated user's info is stored in req.user
     const metUserId = req.body.userId;
   
@@ -16,7 +15,6 @@ exports.markMet = async (req, res) => {
   
       if (!existingConnection) {
         // Create a new connection
-        console.log('no existe')
         const connection = new Connection({
           user1: currentUserId,
           user2: metUserId,

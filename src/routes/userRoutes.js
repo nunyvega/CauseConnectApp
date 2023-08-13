@@ -2,19 +2,8 @@ const express = require('express');
 const userController = require('../controllers/userController');
 const multer = require('multer');
 const path = require('path');
+const upload = require('../multerConfig');
 const router = express.Router();
-
-// Multer setup
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, 'public/uploads/');  // 'public/uploads/' is the directory where images will be saved
-  },
-  filename: (req, file, cb) => {
-    cb(null, Date.now() + path.extname(file.originalname)); // Append the date and original extension to the filename
-  }
-});
-
-const upload = multer({ storage: storage });
 
 function isAuthenticated(req, res, next) {
     if (req.isAuthenticated()) {
@@ -24,12 +13,11 @@ function isAuthenticated(req, res, next) {
     res.redirect('/login');
 }
 
-router.post('/preferences', userController.updateUserPreferences);
+router.post('/preferences', isAuthenticated,upload.single('profilePicture'), userController.updateUserPreferences);
 
 router.get('/preferences', isAuthenticated, async (req, res) => {
     try {
         // Get the user preferences
-        console.log('fprefos');
         const preferences = await userController.getUserPreferences(req.user.id);
         
         // Get flash messages
@@ -45,20 +33,6 @@ router.get('/preferences', isAuthenticated, async (req, res) => {
     }
 });
 
-// New route to handle profile picture uploads
-router.post('/uploadProfile', isAuthenticated, upload.single('profilePicture'), async (req, res) => {
-    try {
-        const profilePictureUrl = `/uploads/${req.file.filename}`;
-        const user = await User.findById(req.user.id); // Make sure you import your User model at the top
-        user.profilePicture = profilePictureUrl;
-        await user.save();
-        req.flash('success', 'Profile picture updated successfully.');
-        res.redirect('/preferences');  // Redirecting back to preferences after successful upload
-    } catch (error) {
-        console.error(error);
-        req.flash('error', 'Failed to upload profile picture.');
-        res.redirect('/preferences');
-    }
-});
+
 
 module.exports = router;
