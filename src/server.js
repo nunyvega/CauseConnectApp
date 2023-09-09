@@ -103,7 +103,7 @@ app.use('/auth', authRoutes);
 const userRoutes = require('./routes/userRoutes');
 app.use('/user', userRoutes);
 const connectionRoutes = require('./routes/connectionRoutes');
-app.use('/connections', connectionRoutes);
+app.use(connectionRoutes);
 
 
 app.get('/', ensureAuthenticated, async (req, res) => {
@@ -130,9 +130,6 @@ app.get('/', ensureAuthenticated, async (req, res) => {
     metUsers: totalConnections // This represents the number of users met
   });
 });
-
-
-
 
 app.get('/logout', (req, res) => {
   req.session.destroy(function (err) {

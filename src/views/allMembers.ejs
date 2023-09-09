@@ -79,12 +79,12 @@
                     </div>
                     
                     <% if (user.met) { %>
-                        <form action="/connections/markUnmet" method="post">
+                        <form action="/markUnmet" method="post">
                             <input type="hidden" name="userId" value="<%= user._id %>">
                             <button type="submit">Mark as Unmet</button>
                         </form>
                     <% } else { %>
-                        <form action="/connections/markMet" method="post">
+                        <form action="/markMet" method="post">
                             <input type="hidden" name="userId" value="<%= user._id %>">
                             <button type="submit">Mark as Met</button>
                         </form>

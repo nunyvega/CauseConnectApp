@@ -1,4 +1,5 @@
 const Connection = require('../models/Connection');
+const User = require('../models/User');
 
 exports.markMet = async (req, res) => {
     const currentUserId = req.user._id; // This assumes the authenticated user's info is stored in req.user
@@ -25,7 +26,7 @@ exports.markMet = async (req, res) => {
         console.log('existe')
       }
   
-      res.redirect('/connections/all');
+      res.redirect('/mark-met');
     } catch (error) {
       console.error(error);
       res.status(500).send('An error occurred');
@@ -51,10 +52,34 @@ exports.markMet = async (req, res) => {
         console.log('Connection not found');
       }
   
-      res.redirect('/connections/all');
+      res.redirect('//mark-met');
     } catch (error) {
       console.error(error);
       res.status(500).send('An error occurred');
     }
   };
   
+  exports.getMetMembers = async (req, res) => {
+    try {
+        const connections = await Connection.find({
+            $or: [
+                { user1: req.user._id },
+                { user2: req.user._id }
+            ]
+        });
+
+        const metUserIds = connections.map(conn => 
+            conn.user1.toString() === req.user._id.toString() 
+            ? conn.user2.toString() 
+            : conn.user1.toString()
+        );
+
+        const metUsers = await User.find({ _id: { $in: metUserIds } });
+
+        res.render('membersMet', { users: metUsers });
+
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('An error occurred while fetching met members.');
+    }
+};

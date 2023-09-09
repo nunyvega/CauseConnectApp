@@ -16,7 +16,7 @@ router.post('/markMet', isAuthenticated, connectionController.markMet);
 router.post('/markUnmet', isAuthenticated, connectionController.markUnmet);
 
 module.exports = router;
-router.get('/all', isAuthenticated, async (req, res) => {
+router.get('/mark-met', isAuthenticated, async (req, res) => {
   try {
     const users = await User.find();
     const connections = await Connection.find({
@@ -32,9 +32,12 @@ router.get('/all', isAuthenticated, async (req, res) => {
       user.met = metUserIds.includes(user._id.toString());
     });
 
-    res.render('connections', { users, currentUser: req.user });
+    res.render('allMembers', { users, currentUser: req.user });
   } catch (error) {
     console.error(error);
     res.status(500).send('An error occurred');
   }
 });
+
+router.get('/members-met', isAuthenticated, connectionController.getMetMembers);
+
