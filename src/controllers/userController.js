@@ -50,3 +50,19 @@ exports.getUserPreferences = async function(userId) {
   };
   
   
+  exports.getRecommendedUsers = async (req, res) => {
+    try {
+        const currentUser = await User.findById(req.user._id);
+
+        // Find users with the most matching interests
+        const users = await User.find({
+            _id: { $ne: req.user._id },  // Exclude current user
+            interests: { $in: currentUser.interests }
+        });
+
+        res.render('recommendedUsers', { users });
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('An error occurred');
+    }
+};

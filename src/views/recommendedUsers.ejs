@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Members You Met</title>
+    <title>Recommended Users</title>
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -44,23 +44,35 @@
             align-items: center;
         }
         .username {
-            color:#444;
+            color:#444
+        }
+        .name {
+            margin-left: 5px;
+        }
+        .interests {
             margin-left: 10px;
+            color: #007799;
         }
     </style>
 </head>
 <body>
     <%- include('partials/header') %>
-    <h1>Members You Met</h1>
+    <h1>Recommended Users to Meet</h1>
     <ul>
         <% users.forEach(user => { %>
             <li>
                 <div class="userInfo">
                     <img src="<%= user.profilePicture %>" alt="User's Profile Picture">
                     <p class="username">@<%= user.username %></p>
+                    <p class="interests">
+                        Shared Interests: 
+                        <% user.interests.forEach((interest, index) => { %>
+                            <%= interest %><%= index !== user.interests.length - 1 ? ',' : '' %> 
+                        <% }); %>
+                    </p>
                 </div>
             </li>
-        <% }) %>
+        <% }); %>
     </ul>
 </body>
 </html>

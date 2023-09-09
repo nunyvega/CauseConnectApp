@@ -14,8 +14,11 @@ const userSchema = new mongoose.Schema({
  name: String,
   age: Number,
   skills: [String],
-  interests: [String],
-  role: String,
+  interests: [{
+    type: String,
+    enum: ['Photography', 'Traveling', 'Reading', 'Sports', 'Music', 'Cooking', 'Coding', 'Gaming'] // TODO: rework interests list
+}],
+role: String,
   favoriteBook: String,
   preferredGreeting: {
     type: String,

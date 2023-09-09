@@ -33,6 +33,4 @@ router.get('/preferences', isAuthenticated, async (req, res) => {
     }
 });
 
-
-
 module.exports = router;

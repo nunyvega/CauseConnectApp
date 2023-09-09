@@ -1,5 +1,6 @@
 const express = require('express');
 const connectionController = require('../controllers/connectionController');
+const userController = require('../controllers/userController');
 const router = express.Router();
 const User = require('../models/User');
 const Connection = require('../models/Connection');
@@ -40,4 +41,5 @@ router.get('/mark-met', isAuthenticated, async (req, res) => {
 });
 
 router.get('/members-met', isAuthenticated, connectionController.getMetMembers);
+router.get('/recommendations', isAuthenticated, userController.getRecommendedUsers);
 

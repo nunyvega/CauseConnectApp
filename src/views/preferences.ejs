@@ -91,6 +91,10 @@
   <label for="favoriteBook">Favorite Book:</label>
   <input type="text" name="favoriteBook" value="<%= preferences.favoriteBook || '' %>">
 
+  <label for="interests">Select Interests:</label>
+  <input type="checkbox" name="interests" value="Photography"> Photography
+  <input type="checkbox" name="interests" value="Traveling"> Traveling
+      <!-- TODO: add other values -->
   <label for="preferredGreeting">Preferred Greeting:</label>
   <select name="preferredGreeting">
     <option value="hug" <%= preferences.preferredGreeting === 'hug' ? 'selected' : '' %>>Hug</option>
