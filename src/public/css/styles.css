@@ -45,7 +45,6 @@ body {
     border: 1px solid #ccc;
     border-radius: 5px;
     line-height: 3;
-    p
   }
   
   button[type="submit"],  .button:hover {
@@ -54,17 +53,17 @@ body {
     border-radius: 5px;
     color: #ffffff;
     cursor: pointer;
-    background-color: #00aaff;
+    background-color: #CCD5AE;
     transition: background-color 0.3s;
   }
   
   button[type="submit"]:hover , .button:hover{
-    background-color: #007799;
+    background-color: #b3c96b;
   }
   
   a {
     text-decoration: none;
-    color: #00aaff;
+    color: #CCD5AE;
   }
   
   a:hover {
@@ -124,8 +123,33 @@ button, .button {
     transition: background-color 0.3s;
 }
 button[type="submit"],  .button {
-    background-color: #00aaff;
+    background-color: #CCD5AE;
 }
 button[type="submit"]:hover ,  .button:hover{
-    background-color: #007799;
+    background-color: #b3c96b;
+}
+
+.with-background {
+  background-image: url('/bg.jpg'); 
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  height: 100vh;
+  overflow: hidden;
+  position: relative; /* Ensure this is relative for absolute positioning of the :after content */
+}
+
+.with-background:after {
+  content: "Photo by Hannah Busing on Unsplash";
+  font-size: x-small;
+  color: rgba(255, 255, 255, 0.6);
+  position: absolute; /* Absolute positioning */
+  bottom: 10px; /* Distance from the bottom of the parent element */
+  right: 10px; /* Distance from the right of the parent element */
+}
+
+.content-with-background {
+  background-color: rgba(255, 255, 255, 0.9); 
+  /*backface-visibility: hidden; /* Ensures the child elements aren't blurred */
+  /*filter: none; */
 }

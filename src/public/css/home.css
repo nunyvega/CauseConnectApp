@@ -5,14 +5,14 @@
 .percentage-circle {
     width: 200px;
     height: 200px;
-    border: 10px solid #00aaff;
+    border: 10px solid #CCD5AE;
     border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
     margin: 20px auto;
     font-size: 36px;
-    color: #00aaff;
+    color: #CCD5AE;
     background-color: #ffffff;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
@@ -24,7 +24,7 @@
 }
 .cta-button, .cta-button:hover {
     padding: 15px 30px;
-    background-color: #00aaff;
+    background-color: #CCD5AE;
     color: #fff;
     text-decoration: none;
     margin: 10px;
@@ -33,5 +33,5 @@
     transition: background-color 0.3s;
 }
 .cta-button:hover {
-    background-color: #007799;
+    background-color: #b3c96b;
 }

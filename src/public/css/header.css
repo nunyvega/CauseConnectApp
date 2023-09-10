@@ -5,7 +5,7 @@ body {
     background-color: #f5f5f5;
 }
 .navbar {
-    background-color: #00aaff;
+    background-color: #CCD5AE;
     padding: 10px 20px;
     display: flex;
     justify-content: space-between;
@@ -36,7 +36,7 @@ body {
 }
 
 .navbar.logged-out{
-    background-color: #00aaff;
+    background-color: #CCD5AE;
     padding: 10px 20px;
     display: flex;
     justify-content: space-around;
