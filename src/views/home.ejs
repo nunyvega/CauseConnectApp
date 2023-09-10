@@ -5,45 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CauseConnect</title>
     <link rel="icon" href="icon.png">
-    <style>
-        .main-section {
-            text-align: center;
-            margin: 50px;
-        }
-        .percentage-circle {
-            width: 200px;
-            height: 200px;
-            border: 10px solid #00aaff;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin: 20px auto;
-            font-size: 36px;
-            color: #00aaff;
-            background-color: #ffffff;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-        .cta-buttons {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin: 20px;
-        }
-        .cta-button {
-            padding: 15px 30px;
-            background-color: #00aaff;
-            color: #fff;
-            text-decoration: none;
-            margin: 10px;
-            border-radius: 25px;
-            font-weight: bold;
-            transition: background-color 0.3s;
-        }
-        .cta-button:hover {
-            background-color: #007799;
-        }
-    </style>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/home.css">
 </head>
 <body>
     <%- include('partials/header') %>
@@ -53,9 +16,9 @@
         </div>
         <p><%= Math.round(percentageMet * totalUsers / 100) %> of <%= totalUsers %> members met</p>
         <div class="cta-buttons">
-            <a href="/recommendations" class="cta-button">Meet more members</a>
-            <a href="/members-met" class="cta-button">Members you met</a>
-            <a href="/mark-met" class="cta-button">Update members met</a>
+            <a href="/recommendations" class="button cta-button">Meet more members</a>
+            <a href="/members-met" class="button cta-button">Members you met</a>
+            <a href="/mark-met" class="button cta-button">Update members met</a>
         </div>
     </div>
 </body>

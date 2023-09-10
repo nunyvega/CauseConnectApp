@@ -1,0 +1,14 @@
+    .userInfo {
+        display: flex;
+        align-items: center;
+    }
+    .username {
+        color:#444
+    }
+    .name {
+        margin-left: 5px;
+    }
+    .interests {
+        margin-left: 10px;
+        color: #007799;
+    }
