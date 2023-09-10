@@ -52,7 +52,7 @@ exports.markMet = async (req, res) => {
         console.log('Connection not found');
       }
   
-      res.redirect('//mark-met');
+      res.redirect('/mark-met');
     } catch (error) {
       console.error(error);
       res.status(500).send('An error occurred');
