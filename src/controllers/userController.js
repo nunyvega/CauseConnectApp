@@ -21,7 +21,7 @@ exports.renderPreferencesPage = async (req, res) => {
     const languageOptions = User.schema.path('languagesSpoken').caster.enumValues;
     const greetingOptions = User.schema.path('preferredGreeting').caster.enumValues;
     console.log(greetingOptions)
-    console.log(userPreferences.preferredGreeting)
+    console.log(userPreferences)
     res.render('preferences', {
       preferences: userPreferences,
       skillOptions: skillOptions,

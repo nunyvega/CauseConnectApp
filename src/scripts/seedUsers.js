@@ -2,6 +2,8 @@ const mongoose = require('mongoose');
 const faker = require('faker');
 const User = require("../models/User");
 const bcrypt = require('bcrypt');
+
+// Use the same password for every use to test the app faster
 const hashedPass = bcrypt.hashSync('admin', 10);
 
 mongoose.connect('mongodb://localhost/CauseConnect', {
@@ -9,7 +11,7 @@ mongoose.connect('mongodb://localhost/CauseConnect', {
     useUnifiedTopology: true
 }).then(() => {
     console.log('Connected to MongoDB');
-    generateUsers(10); // Generate 100 users, for example.
+    generateUsers(100); // Generate 100 users, for example.
 }).catch(err => {
     console.error('Failed to connect to MongoDB:', err);
 });
@@ -35,19 +37,21 @@ function generateUsers(numberOfUsers) {
     const users = [];
 
     for (let i = 0; i < numberOfUsers; i++) {
+        let username = faker.internet.userName();
+
         users.push(new User({
-            username: faker.internet.userName(),
+            username: username,
             password: hashedPass,
             name: faker.name.findName(),
             age: faker.datatype.number({ min: 18, max: 80 }),
             skills: [faker.random.arrayElement(User.schema.path('skills').caster.enumValues)],
-            interests: generateRandomItems('interests', 2, 12),
-            role: generateRandomItems('role', 2, 6),
+            interests: generateRandomItems('interests', 6, 14),
+            role: generateRandomItems('role', 3, 6),
             favoriteBook: faker.random.arrayElement(["The Great Gatsby", "Moby Dick", "To Kill a Mockingbird"]),
             preferredGreeting: generateRandomItems('preferredGreeting', 1, 5),
             profilePicture: i % 2 === 0 ? 'https://randomuser.me/api/portraits/men/' + i + '.jpg' : 'https://randomuser.me/api/portraits/women/' + i + '.jpg',
             languagesSpoken: generateRandomItems('languagesSpoken', 2, 6),
-            personalBio: faker.lorem.paragraph(),
+            personalBio: faker.lorem.paragraphs(3),
             location: faker.address.city(),
             contactMethods: {
                 email: faker.internet.email(),

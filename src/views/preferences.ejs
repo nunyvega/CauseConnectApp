@@ -37,7 +37,7 @@
 
       <fieldset>
         <legend>Age:</legend>
-        <input type="number" name="age" value="<%= preferences.age || '' %>">
+        <input id="age" type="number" name="age" value="<%= preferences.age || '' %>">
       </fieldset>
 
       <fieldset>
@@ -47,16 +47,18 @@
 
       <fieldset>
         <legend>Personal Bio:</legend>
-        <input id="personalBio" type="text" name="personalBio" value="<%= preferences.personalBio || '' %>">
+        <textarea id="personalBio" type="text" name="personalBio">
+          <%= preferences.personalBio || '' %>
+        </textarea>
       </fieldset>
 
       <!-- Allow user to set email and phone number -->
       <fieldset> 
         <legend>Contact Methods:</legend>
         <label for="email">Email</label>
-        <input type="text" name="email" value="<%= preferences.email || '' %>">
+        <input type="text" name="contactMethods.email" value="<%= preferences.contactMethods.email || '' %>">
         <label for="phone">Phone</label>
-        <input type="text" name="phone" value="<%= preferences.phone || '' %>">        
+        <input type="text" name="contactMethods.phone" value="<%= preferences.contactMethods.phone || '' %>">        
       </fieldset>
       <!-- Skills -->
       <fieldset>
@@ -113,7 +115,6 @@
         <legend>Prefered Greeting:</legend>
         <% greetingOptions.forEach(preferredGreeting => { %>
         <div class="checkbox-group">
-
           <input type="checkbox" name="preferredGreeting" value="<%= preferredGreeting %>" <% if(preferences.preferredGreeting && preferences.preferredGreeting.includes(preferredGreeting)) { %>checked<% } %>>
           <label><%= preferredGreeting %></label><br>
         </div>
@@ -125,22 +126,22 @@
         <legend>Social Media:</legend>
     
         <label for="facebook"><i class="fab fa-facebook-f"></i> Facebook</label>
-        <input type="text" name="facebook" value="<%= preferences.facebook || '' %>">
+        <input type="text" name="socialMedia.facebook" value="<%= preferences.socialMedia.facebook || '' %>">
     
         <label for="twitter"><i class="fab fa-twitter"></i> Twitter</label>
-        <input type="text" name="twitter" value="<%= preferences.twitter || '' %>">
+        <input type="text" name="socialMedia.twitter" value="<%= preferences.socialMedia.twitter || '' %>">
     
         <label for="instagram"><i class="fab fa-instagram"></i> Instagram</label>
-        <input type="text" name="instagram" value="<%= preferences.instagram || '' %>">
+        <input type="text" name="socialMedia.instagram" value="<%= preferences.socialMedia.instagram || '' %>">
     
         <label for="linkedin"><i class="fab fa-linkedin-in"></i> LinkedIn</label>
-        <input type="text" name="linkedin" value="<%= preferences.linkedin || '' %>">
+        <input type="text" name="socialMedia.linkedin" value="<%= preferences.socialMedia.linkedin || '' %>">
     
         <label for="youtube"><i class="fab fa-youtube"></i> YouTube</label>
-        <input type="text" name="youtube" value="<%= preferences.youtube || '' %>">
+        <input type="text" name="socialMedia.youtube" value="<%= preferences.socialMedia.youtube || '' %>">
     
         <label for="website"><i class="fas fa-globe"></i> Website</label>
-        <input type="text" name="website" value="<%= preferences.website || '' %>">
+        <input type="text" name="socialMedia.website" value="<%= preferences.socialMedia.website || '' %>">
     </fieldset>
     
 
