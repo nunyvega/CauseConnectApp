@@ -12,6 +12,7 @@ const userSchema = new mongoose.Schema({
     required: true
   },
  name: String,
+ personalBio: String,
   age: Number,
   skills: [{
     type: String,

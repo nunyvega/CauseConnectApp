@@ -29,6 +29,7 @@ exports.renderPreferencesPage = async (req, res) => {
       roleOptions: roleOptions,
       languageOptions: languageOptions,
       greetingOptions: greetingOptions,
+      personalBio: userPreferences.personalBio,
       successMessage: req.flash('success')
     });
   } catch (err) {
@@ -70,6 +71,7 @@ exports.getUserPreferences = async function (userId) {
     location: user.location,
     contactMethods: user.contactMethods,
     socialMedia: user.socialMedia,
+    personalBio: user.personalBio,
   };
 };
 

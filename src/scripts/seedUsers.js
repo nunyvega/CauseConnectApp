@@ -21,6 +21,16 @@ User.deleteMany({ username: { $ne: 'admin' } }).then(() => {
 });
 
 
+function generateRandomItems(path, min, max) {
+    let itemsCount = faker.datatype.number({ min: min, max: max });
+    let items = [];
+
+    for (let i = 0; i < itemsCount; i++) {
+        items.push(faker.random.arrayElement(User.schema.path(path).caster.enumValues));
+    }
+    return items;
+}
+
 function generateUsers(numberOfUsers) {
     const users = [];
 
@@ -29,22 +39,29 @@ function generateUsers(numberOfUsers) {
             username: faker.internet.userName(),
             password: hashedPass,
             name: faker.name.findName(),
-            age: faker.datatype.number({ min: 18, max: 80 }), // Updated from faker.random.number to faker.datatype.number
+            age: faker.datatype.number({ min: 18, max: 80 }),
             skills: [faker.random.arrayElement(User.schema.path('skills').caster.enumValues)],
-            interests: [faker.random.arrayElement(User.schema.path('interests').caster.enumValues)],
-            role: [faker.random.arrayElement(User.schema.path('role').caster.enumValues)],
+            interests: generateRandomItems('interests', 2, 12),
+            role: generateRandomItems('role', 2, 6),
             favoriteBook: faker.random.arrayElement(["The Great Gatsby", "Moby Dick", "To Kill a Mockingbird"]),
-            preferredGreeting: faker.random.arrayElement(User.schema.path('preferredGreeting').enumValues),
-            // Use unsplash dynamic image generator, faker does 
-            profilePicture: i % 2 === 0 ? 'https://randomuser.me/api/portraits/men/' + i + '.jpg' : 'https://randomuser.me/api/portraits/women/' + i + '.jpg', 
-            languagesSpoken: [faker.random.arrayElement(User.schema.path('languagesSpoken').caster.enumValues)],
+            preferredGreeting: generateRandomItems('preferredGreeting', 1, 5),
+            profilePicture: i % 2 === 0 ? 'https://randomuser.me/api/portraits/men/' + i + '.jpg' : 'https://randomuser.me/api/portraits/women/' + i + '.jpg',
+            languagesSpoken: generateRandomItems('languagesSpoken', 2, 6),
             personalBio: faker.lorem.paragraph(),
             location: faker.address.city(),
             contactMethods: {
                 email: faker.internet.email(),
                 phone: faker.phone.phoneNumber(),
             },
-            personalBlogOrWebsite: faker.internet.url()
+            personalBlogOrWebsite: faker.internet.url(),
+            socialMedia: {
+                facebook: 'facebook.com/' + username,
+                twitter: 'twitter.com/' + username,
+                instagram: 'instagram.com/' + username,
+                linkedin: 'linkedin.com/' + username,
+                youtube: 'youtube.com/' + username,
+                website: faker.internet.url(),
+            }
         }));
     }
 
@@ -56,3 +73,4 @@ function generateUsers(numberOfUsers) {
         console.error('Failed to insert users:', err);
     });
 }
+
