@@ -77,11 +77,10 @@ role: [{
   ]
 }],
   favoriteBook: String,
-  preferredGreeting: {
+  preferredGreeting: [{
     type: String,
     enum: ['hug', 'handshake', 'high five', 'fist bump', 'wave'],
-    default: 'wave'
-  },
+  }],
   profilePicture: {
     type: String,
     default: '/uploads/profile.png'
@@ -110,12 +109,11 @@ languagesSpoken: [{
   contactMethods: {
     email: String,
     phone: String,
-    message: String,
   },
   socialMedia: {
     facebook: String,
     twitter: String,
-         instagram: String,
+    instagram: String,
     linkedin: String,
     youtube: String,
     website: String,

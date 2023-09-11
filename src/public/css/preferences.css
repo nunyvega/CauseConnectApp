@@ -1,13 +1,11 @@
-body {
-  font-family: Arial, sans-serif;
-  background-color: #f4f4f4;
-}
+
 form {
   max-width: 600px;
   margin: 2rem auto;
   padding: 2rem;
   background-color: #ffffff;
   border: 1px solid #e0e0e0;
+  border-radius: 8px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
 label,
@@ -15,14 +13,56 @@ input,
 select {
   display: block;
   margin-bottom: 1rem;
-  width: 100%;
-}
-input,
-select {
-  padding: 0.5rem;
-  border: 1px solid #e0e0e0;
 }
 
-button:hover {
-  background-color: #0056b3;
+fieldset {
+  margin: 1rem 0;
+  padding: 1rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 5px;
+}
+
+legend {
+  font-weight: bold;
+  color: #444;
+}
+
+
+.success-message {
+  background-color: #e0f2e9; 
+  border: 1px solid #b2d8b2;
+  padding: 1rem;
+  margin: 1rem 0;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.checkbox-group {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.checkbox-group label {
+  display: flex;
+  align-items: center; /* Vertically align the checkbox and label text */
+  margin-bottom: 0.5rem;
+}
+
+#profile-image {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin: 1rem auto;
+  display: block;
+}
+
+#profilePicture {
+  margin:  auto;
+
+}
+
+label i {
+  margin-right: 0.5rem;
+  font-size: 1.1em;
 }

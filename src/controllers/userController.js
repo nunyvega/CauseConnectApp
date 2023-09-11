@@ -9,20 +9,42 @@ exports.getAllUsers = async (req, res) => {
   }
 };
 
-exports.renderPreferencesPage = (req, res) => {
-  res.render("preferences");
+exports.renderPreferencesPage = async (req, res) => {
+  try {
+    const userId = req.user._id;
+    const userPreferences = await exports.getUserPreferences(userId);
+    
+    // Get schema enum values for skills, interests, roles, and languages
+    const skillOptions = User.schema.path('skills').caster.enumValues;
+    const interestOptions = User.schema.path('interests').caster.enumValues;
+    const roleOptions = User.schema.path('role').caster.enumValues;
+    const languageOptions = User.schema.path('languagesSpoken').caster.enumValues;
+    const greetingOptions = User.schema.path('preferredGreeting').caster.enumValues;
+    console.log(greetingOptions)
+    console.log(userPreferences.preferredGreeting)
+    res.render('preferences', {
+      preferences: userPreferences,
+      skillOptions: skillOptions,
+      interestOptions: interestOptions,
+      roleOptions: roleOptions,
+      languageOptions: languageOptions,
+      greetingOptions: greetingOptions,
+      successMessage: req.flash('success')
+    });
+  } catch (err) {
+    console.error(err);
+    req.flash('error', 'An error occurred');
+  }
 };
 
 exports.updateUserPreferences = async (req, res) => {
-  console.log("here");
   try {
     const userId = req.user._id;
-    console.log(req);
     // Check if a new image was uploaded
     if (req.file) {
       req.body.profilePicture = "/uploads/" + req.file.filename;
     }
-
+    console.log(req.body)
     const user = await User.findByIdAndUpdate(userId, req.body, { new: true });
     req.flash("success", "Preferences updated successfully");
     res.redirect("/user/preferences");
@@ -44,6 +66,10 @@ exports.getUserPreferences = async function (userId) {
     favoriteBook: user.favoriteBook,
     preferredGreeting: user.preferredGreeting,
     profilePicture: user.profilePicture,
+    languagesSpoken: user.languagesSpoken,
+    location: user.location,
+    contactMethods: user.contactMethods,
+    socialMedia: user.socialMedia,
   };
 };
 

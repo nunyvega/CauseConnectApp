@@ -23,7 +23,7 @@ exports.markMet = async (req, res) => {
       });
       await connection.save();
     } else {
-      console.log("existe");
+      console.log("Exists");
     }
 
     res.redirect("/mark-met");
