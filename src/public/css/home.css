@@ -1,37 +1,38 @@
 .main-section {
-    text-align: center;
-    margin: 50px;
+  text-align: center;
+  margin: 50px;
 }
 .percentage-circle {
-    width: 200px;
-    height: 200px;
-    border: 10px solid #CCD5AE;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 20px auto;
-    font-size: 36px;
-    color: #CCD5AE;
-    background-color: #ffffff;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 200px;
+  height: 200px;
+  border: 10px solid #ccd5ae;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px auto;
+  font-size: 36px;
+  color: #ccd5ae;
+  background-color: #ffffff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 .cta-buttons {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px;
 }
-.cta-button, .cta-button:hover {
-    padding: 15px 30px;
-    background-color: #CCD5AE;
-    color: #fff;
-    text-decoration: none;
-    margin: 10px;
-    border-radius: 25px;
-    font-weight: bold;
-    transition: background-color 0.3s;
+.cta-button,
+.cta-button:hover {
+  padding: 15px 30px;
+  background-color: #ccd5ae;
+  color: #fff;
+  text-decoration: none;
+  margin: 10px;
+  border-radius: 25px;
+  font-weight: bold;
+  transition: background-color 0.3s;
 }
 .cta-button:hover {
-    background-color: #b3c96b;
+  background-color: #b3c96b;
 }

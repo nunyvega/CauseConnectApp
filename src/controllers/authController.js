@@ -1,5 +1,5 @@
-const User = require('../models/User');
-const bcrypt = require('bcrypt');
+const User = require("../models/User");
+const bcrypt = require("bcrypt");
 
 exports.register = async (req, res, next) => {
   try {
@@ -10,9 +10,8 @@ exports.register = async (req, res, next) => {
     await user.save();
 
     // Redirect to the login page
-    res.redirect('/login');
+    res.redirect("/login");
   } catch (err) {
     res.status(400).json({ error: err.message });
   }
 };
-

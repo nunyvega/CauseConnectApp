@@ -1,24 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Members You Met</title>
-    <link rel="stylesheet" href="/css/styles.css">
-    <link rel="stylesheet" href="/css/membersMet.css">
-</head>
-<body>
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="stylesheet" href="/css/membersMet.css" />
+  </head>
+  <body>
     <%- include('partials/header') %>
     <h1>Members You Met</h1>
     <ul>
-        <% users.forEach(user => { %>
-            <li>
-                <div class="userInfo">
-                    <img src="<%= user.profilePicture %>" alt="User's Profile Picture">
-                    <p class="username">@<%= user.username %></p>
-                </div>
-            </li>
-        <% }) %>
+      <% users.forEach(user => { %>
+      <li>
+        <div class="userInfo">
+          <img src="<%= user.profilePicture %>" alt="User's Profile Picture" />
+          <p class="username">@<%= user.username %></p>
+        </div>
+      </li>
+      <% }) %>
     </ul>
-</body>
+  </body>
 </html>

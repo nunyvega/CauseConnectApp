@@ -1,25 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CauseConnect</title>
-    <link rel="icon" href="icon.png">
-    <link rel="stylesheet" href="/css/styles.css">
-    <link rel="stylesheet" href="/css/home.css">
-</head>
-<body>
+    <link rel="icon" href="icon.png" />
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="stylesheet" href="/css/home.css" />
+  </head>
+  <body>
     <%- include('partials/header') %>
     <div class="main-section">
-        <div class="percentage-circle">
-            <%= percentageMet.toFixed(0) %>%
-        </div>
-        <p><%= Math.round(percentageMet * totalUsers / 100) %> of <%= totalUsers %> members met</p>
-        <div class="cta-buttons">
-            <a href="/recommendations" class="button cta-button">Meet more members</a>
-            <a href="/members-met" class="button cta-button">Members you met</a>
-            <a href="/mark-met" class="button cta-button">Update members met</a>
-        </div>
+      <div class="percentage-circle"><%= percentageMet.toFixed(0) %>%</div>
+      <p>
+        <%= Math.round(percentageMet * totalUsers / 100) %> of <%= totalUsers %>
+        members met
+      </p>
+      <div class="cta-buttons">
+        <a href="/recommendations" class="button cta-button"
+          >Meet more members</a
+        >
+        <a href="/members-met" class="button cta-button">Members you met</a>
+        <a href="/mark-met" class="button cta-button">Update members met</a>
+      </div>
     </div>
-</body>
+  </body>
 </html>
