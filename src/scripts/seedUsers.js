@@ -23,6 +23,7 @@ User.deleteMany({ username: { $ne: 'admin' } }).then(() => {
 });
 
 
+// Randomly generate a number of values for fields with enum values
 function generateRandomItems(path, min, max) {
     let itemsCount = faker.datatype.number({ min: min, max: max });
     let items = [];
@@ -44,7 +45,7 @@ function generateUsers(numberOfUsers) {
             password: hashedPass,
             name: faker.name.findName(),
             age: faker.datatype.number({ min: 18, max: 80 }),
-            skills: [faker.random.arrayElement(User.schema.path('skills').caster.enumValues)],
+            skills: generateRandomItems('skills', 7, 14),
             interests: generateRandomItems('interests', 6, 14),
             role: generateRandomItems('role', 3, 6),
             favoriteBook: faker.random.arrayElement(["The Great Gatsby", "Moby Dick", "To Kill a Mockingbird"]),
