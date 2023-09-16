@@ -47,7 +47,7 @@ function generateUsers(numberOfUsers) {
             age: faker.datatype.number({ min: 18, max: 80 }),
             skills: generateRandomItems('skills', 7, 14),
             interests: generateRandomItems('interests', 6, 14),
-            role: generateRandomItems('role', 3, 6),
+            roles: generateRandomItems('roles', 3, 6),
             favoriteBook: faker.random.arrayElement(["The Great Gatsby", "Moby Dick", "To Kill a Mockingbird"]),
             preferredGreeting: generateRandomItems('preferredGreeting', 1, 5),
             profilePicture: i % 2 === 0 ? 'https://randomuser.me/api/portraits/men/' + i + '.jpg' : 'https://randomuser.me/api/portraits/women/' + i + '.jpg',

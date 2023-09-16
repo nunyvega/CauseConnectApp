@@ -2,6 +2,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
+  justify-content: center;
 }
 
 .user-card {
@@ -11,10 +12,17 @@
   max-width: 250px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   background-color: #ffffff;
+  margin: 25px;
+  padding: 25px;
 }
 
 .profile-pic {
-  width:150px; height:150px; border-radius:50%
+  width:200px;
+  height:200px;
+  border-radius:50%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .username {
@@ -38,4 +46,21 @@ meter {
   margin-top: 1rem;
   font-size: 0.9rem;
   color: #777;
+}
+
+.language-flags {
+  display: flex;
+  gap: 5px;
+}
+
+.language-flag {
+ font-size: 35px;
+}
+
+.detail-list {
+  display: none;
+}
+
+.expanded .detail-list {
+  display: block;
 }

@@ -56,7 +56,7 @@ interests: [{
     'Clean Energy & Climate Change'
   ]
 }],
-role: [{
+roles: [{
   type: String,
   enum: [
     'Board Member',

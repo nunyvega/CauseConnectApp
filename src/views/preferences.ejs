@@ -89,7 +89,7 @@
         <legend>Roles:</legend>
         <% roleOptions.forEach(role => { %>
         <div class="checkbox-group">
-          <input type="checkbox" name="role" value="<%= role %>" <% if(preferences.role && preferences.role.includes(role)) { %>checked<% } %>>
+          <input type="checkbox" name="roles" value="<%= role %>" <% if(preferences.roles && preferences.roles.includes(role)) { %>checked<% } %>>
           <label><%= role %></label><br>
         </div>
         <% }); %>

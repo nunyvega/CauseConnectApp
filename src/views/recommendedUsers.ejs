@@ -1,33 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Recommended Users</title>
     <link rel="stylesheet" href="/css/styles.css" />
     <link rel="stylesheet" href="/css/recommendedUsers.css" />
-  </head>
-  <body class="with-background">
-    <%- include('partials/header') %>
-    <h1>Recommended Users to Meet</h1>
-    <div class="cards">
-      <% users.forEach(user => { %>
-        <div class="user-card">
-          <img class="profile-pic" src="<%= user.profilePicture %>" alt="User's Profile Picture" />
-          <h2 class="username">@<%= user.name %></h2>
-          <div class="similarity-score">
+</head>
+<body class="with-background">
+<%- include('partials/header') %>
+<% 
+    const languageToFlag = {
+        'English': '🇬🇧',
+        'Spanish': '🇪🇸',
+        'French': '🇫🇷',
+        'German': '🇩🇪',
+        'Chinese': '🇨🇳',
+        'Arabic': '🇸🇦',
+        'Hindi': '🇮🇳',
+        'Portuguese': '🇵🇹',
+        'Russian': '🇷🇺',
+        'Japanese': '🇯🇵',
+        'Swahili': '🇹🇿',
+        'Bengali': '🇧🇩',
+        'Urdu': '🇵🇰', 
+        'Italian': '🇮🇹',
+        'Dutch': '🇳🇱'
+    };
+%>
+<h1>Recommended Users to Meet</h1>
+<div class="cards">
+    <% users.forEach(user => { %>
+    <div class="user-card">
+        <img class="profile-pic" src="<%= user.profilePicture %>" alt="User's Profile Picture" />
+        <h2 class="username">@<%= user.name %></h2>
+        <div class="similarity-score">
             <label for="similarity">Similarity: <%= user.similarityScore.toFixed(2) %> %</label>
             <meter id="similarity" value="<%= user.similarityScore %>" min="0" max="100"></meter>
-          </div>
-          <p class="interests">
-            Shared Interests: 
-            <% user.interests.forEach((interest, index) => { %> 
-              <%= interest %><%= index !== user.interests.length - 1 ? ',' : '' %> 
-            <% }); %>
-          </p>
-          <!-- Include other user details as required -->
         </div>
-      <% }); %>
+        <p class="interests">
+            Shared Interests:
+            <% user.interests.forEach((interest, index) => { %>
+            <%= interest %><%= index !== user.interests.length - 1 ? ',' : '' %>
+            <% }); %>
+        </p>
+        <!-- Displaying roles, skills, and languages -->
+        <p class="roles">
+            Roles:
+            <% user.roles.forEach((role, index) => { %>
+            <%= role %><%= index !== user.roles.length - 1 ? ',' : '' %>
+            <% }); %>
+        </p>
+        <p class="skills">
+            Skills:
+            <% user.skills.forEach((skill, index) => { %>
+            <%= skill %><%= index !== user.skills.length - 1 ? ',' : '' %>
+            <% }); %>
+        </p>
+        <p class="languages">
+            Languages Spoken:
+              <div class="language-flags">
+                <% user.languagesSpoken.forEach((language) => { %>
+                  <div class="language-flag">
+                    <%= languageToFlag[language] || language %>
+                  </div>
+                <% }); %>
+            </div>
+        </p>
     </div>
-  </body>
+    <% }); %>
+</div>
+</body>
 </html>
