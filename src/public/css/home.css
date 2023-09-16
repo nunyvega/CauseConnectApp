@@ -2,9 +2,7 @@
   text-align: center;
   margin: 50px;
 }
-.percentage-circle {
-  width: 200px;
-  height: 200px;
+.percentage-circle-container {
   border: 10px solid #ccd5ae;
   border-radius: 50%;
   display: flex;
@@ -13,8 +11,11 @@
   margin: 20px auto;
   font-size: 36px;
   color: #ccd5ae;
-  background-color: #ffffff;
+  background-color: rgba(255, 255, 255, 1);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  position: relative;
+  width: 210px;
+  height: 210px;
 }
 .cta-buttons {
   display: flex;
@@ -37,12 +38,7 @@
   background-color: #b3c96b;
 }
 
-.percentage-circle-container {
-  position: relative;
-  width: 210px;
-  height: 210px;
-  margin: 20px auto;
-}
+
 
 .percentage-text {
   position: absolute;
@@ -57,4 +53,5 @@
   transition: stroke-dashoffset 0.35s;
   transform: rotate(-90deg);
   transform-origin: 50% 50%;
+  
 }
