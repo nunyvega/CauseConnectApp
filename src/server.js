@@ -10,6 +10,7 @@ const User = require("./models/User");
 const flash = require("connect-flash");
 const Connection = require("./models/Connection");
 const ensureAuthenticated = require("./middleware/authMiddleware");
+const { spawn } = require('child_process');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -142,6 +143,28 @@ app.get("/logout", (req, res) => {
     // Optionally, you can clear the cookie containing the Express session ID
     res.clearCookie("connect.sid");
     res.redirect("/login"); // Redirect to the login page
+  });
+});
+
+
+app.post('/run-seed', (req, res) => {
+  // Execute the seed script to create users
+  const seedProcess = spawn('node', ['./src/scripts/seedUsers.js']);
+
+  seedProcess.stdout.on('data', (data) => {
+      console.log(`stdout: ${data}`);
+  });
+
+  seedProcess.stderr.on('data', (data) => {
+      console.error(`stderr: ${data}`);
+  });
+
+  seedProcess.on('close', (code) => {
+      if (code !== 0) {
+          console.log(`seedUsers.js process exited with code ${code}`);
+          return res.status(500).send('Failed to run seed script.');
+      }
+      res.redirect('/login');
   });
 });
 

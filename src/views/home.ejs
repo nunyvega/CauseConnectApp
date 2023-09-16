@@ -8,21 +8,32 @@
     <link rel="stylesheet" href="/css/styles.css" />
     <link rel="stylesheet" href="/css/home.css" />
   </head>
-  <body>
+  <body class="with-background">
     <%- include('partials/header') %>
     <div class="main-section">
+      <div class="percentage-circle-container" data-percentage="<%= percentageMet %>">
+        <svg class="progress-ring" width="210" height="210">
+            <circle class="progress-ring__circle" stroke="grey" stroke-width="10" fill="transparent" r="100" cx="105" cy="105" />
+            <circle class="progress-ring__progress" stroke="#ccd5ae" stroke-width="10" fill="transparent" r="100" cx="105" cy="105" />
+        </svg>
+        <div class="percentage-text">
+            <span class="percentage-value"><%= percentageMet.toFixed(0) %></span>%
+        </div>
+      </div>
+    
       <div class="percentage-circle"><%= percentageMet.toFixed(0) %>%</div>
+      <div class="percentage-circle">
       <p>
         <%= Math.round(percentageMet * totalUsers / 100) %> of <%= totalUsers %>
         members met
       </p>
+    </div>
       <div class="cta-buttons">
-        <a href="/recommendations" class="button cta-button"
-          >Meet more members</a
-        >
+        <a href="/recommendations" class="button cta-button">Meet more members</a>
         <a href="/members-met" class="button cta-button">Members you met</a>
         <a href="/mark-met" class="button cta-button">Update members met</a>
       </div>
     </div>
+    <script src="/js/home.js"></script>
   </body>
 </html>
