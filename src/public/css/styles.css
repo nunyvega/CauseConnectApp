@@ -144,17 +144,16 @@ button[type="submit"]:hover,
   background-repeat: no-repeat;
   background-attachment: fixed;
   height: 100vh;
-  overflow: hidden;
   position: relative; /* Ensure this is relative for absolute positioning of the :after content */
 }
 
 .with-background:after {
   content: "Photo by Hannah Busing on Unsplash";
   font-size: x-small;
+  position: fixed;
   color: rgba(255, 255, 255, 0.6);
-  position: absolute; /* Absolute positioning */
-  bottom: 10px; /* Distance from the bottom of the parent element */
-  right: 10px; /* Distance from the right of the parent element */
+  padding:10px;
+  bottom:0;
 }
 
 .content-with-background {

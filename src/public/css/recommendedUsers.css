@@ -1,14 +1,41 @@
-.userInfo {
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.user-card {
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  padding: 1rem;
+  max-width: 250px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+}
+
+.profile-pic {
+  width:150px; height:150px; border-radius:50%
+}
+
+.username {
+  text-align: center;
+  margin: 1rem 0;
+}
+
+.similarity-score {
   display: flex;
   align-items: center;
+  gap: 0.5rem;
 }
-.username {
-  color: #444;
+
+meter {
+  width: 100%;
+  height: 15px;
+  border-radius: 7.5px;
 }
-.name {
-  margin-left: 5px;
-}
+
 .interests {
-  margin-left: 10px;
-  color: #b3c96b;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: #777;
 }

@@ -20,8 +20,6 @@ exports.renderPreferencesPage = async (req, res) => {
     const roleOptions = User.schema.path('role').caster.enumValues;
     const languageOptions = User.schema.path('languagesSpoken').caster.enumValues;
     const greetingOptions = User.schema.path('preferredGreeting').caster.enumValues;
-    console.log(greetingOptions)
-    console.log(userPreferences)
     res.render('preferences', {
       preferences: userPreferences,
       skillOptions: skillOptions,
@@ -45,7 +43,6 @@ exports.updateUserPreferences = async (req, res) => {
     if (req.file) {
       req.body.profilePicture = "/uploads/" + req.file.filename;
     }
-    console.log(req.body)
     const user = await User.findByIdAndUpdate(userId, req.body, { new: true });
     req.flash("success", "Preferences updated successfully");
     res.redirect("/user/preferences");
@@ -75,16 +72,110 @@ exports.getUserPreferences = async function (userId) {
   };
 };
 
+// Weighted values for each preference category
+const WEIGHTS = {
+  interests: 1,
+  roles: 2,
+  skills: 1.5,
+  languagesSpoken: 3
+};
+
 exports.getRecommendedUsers = async (req, res) => {
   try {
-    const currentUser = await User.findById(req.user._id);
+    const currentUser = await User.findById(req.user._id) || {};
+    currentUser.interests = currentUser.interests || [];
+    currentUser.roles = currentUser.roles || [];
+    currentUser.skills = currentUser.skills || [];
+    currentUser.languagesSpoken = currentUser.languagesSpoken || [];
 
-    // Find users with the most matching interests
-    const users = await User.find({
-      _id: { $ne: req.user._id }, // Exclude current user
-      interests: { $in: currentUser.interests },
-    });
+    const MAX_SCORE = currentUser.interests.length * WEIGHTS.interests +
+                  currentUser.roles.length * WEIGHTS.roles +
+                  currentUser.skills.length * WEIGHTS.skills +
+                  currentUser.languagesSpoken.length * WEIGHTS.languagesSpoken;
+  
+    console.log(MAX_SCORE)
+    const pipeline = [
+      {
+        $match: { _id: { $ne: currentUser._id } } // Exclude current user
+      },
+      {
+        $project: {
+          interests: { $ifNull: ["$interests", []] },
+          roles: { $ifNull: ["$roles", []] },
+          skills: { $ifNull: ["$skills", []] },
+          languagesSpoken: { $ifNull: ["$languagesSpoken", []] },
+          profilePicture: 1,
+          name: 1,
+          age: 1,
+        }
+      },
+      {
+        $addFields: {
+          commonInterests: {
+            $size: {
+              $setIntersection: ["$interests", currentUser.interests]
+            }
+          },
+          commonRoles: {
+            $size: {
+              $setIntersection: ["$roles", currentUser.roles]
+            }
+          },
+          commonSkills: {
+            $size: {
+              $setIntersection: ["$skills", currentUser.skills]
+            }
+          },
+          commonLanguages: {
+            $size: {
+              $setIntersection: ["$languagesSpoken", currentUser.languagesSpoken]
+            }
+          },
+        }
+      },
 
+      {
+        $addFields: {
+            MAX_SCORE_CONSTANT: MAX_SCORE
+        }
+    },
+    {
+        $addFields: {
+            score: {
+                $add: [
+                    { $multiply: ["$commonInterests", WEIGHTS.interests] },
+                    { $multiply: ["$commonRoles", WEIGHTS.roles] },
+                    { $multiply: ["$commonSkills", WEIGHTS.skills] },
+                    { $multiply: ["$commonLanguages", WEIGHTS.languagesSpoken] },
+                ]
+            }
+        }
+    },
+    {
+        $addFields: {
+            similarityScore: {
+                $min: [100, {
+                    $multiply: [
+                        {
+                            $divide: [
+                                "$score",
+                                "$MAX_SCORE_CONSTANT"
+                            ]
+                        },
+                        100
+                    ]
+                }]
+            }
+        }
+    },
+    
+      
+      {
+        $sort: { score: -1 }  // Sort by descending score
+      }
+    ];
+
+    const users = await User.aggregate(pipeline);
     res.render("recommendedUsers", { users });
   } catch (error) {
     console.error(error);

@@ -55,3 +55,21 @@
   transform-origin: 50% 50%;
   
 }
+
+.members-met {
+  background-color: #f8f8f8; /* A soft gray background */
+  border-radius: 8px; /* Rounded corners */
+  padding: 20px; /* Spacing inside the container */
+  margin-top: 20px; /* Space above the container */
+  font-size: 1.2em; /* Slightly larger text */
+  text-align: center; /* Centered text */
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Slight shadow for depth */
+  max-width: 300px; /* Limit the width */
+  margin-left: auto; /* Center align */
+  margin-right: auto; /* Center align */
+}
+
+.members-met p {
+  margin: 0; /* Remove default margin from the paragraph for better control */
+  color: #333; /* Dark gray text color */
+}
