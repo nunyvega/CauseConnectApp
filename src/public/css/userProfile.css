@@ -1,0 +1,141 @@
+body.with-background {
+    background-color: #f4f4f4; /* A light background color */
+    font-family: Arial, sans-serif; /* Use a sans-serif font like Arial for a modern look */
+}
+
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 20px;
+}
+
+.user-card {
+    background-color: #ffffff; /* White background for the card */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* A subtle shadow for depth */
+    margin: 10px;
+    padding: 40px 60px;
+    width: 60%; /* Set a fixed width or use max-width if you want it to be responsive */
+    position: relative;
+}
+
+.profile-pic {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%; /* Circle shape */
+    object-fit: cover; /* To ensure the image stays within the bounds */
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.username {
+    text-align: center;
+    margin-top: 10px;
+    font-size: 24px;
+}
+
+.detail-section {
+    margin-top: 20px;
+}
+
+.detail-count {
+    background-color: #eee; /* Light gray background */
+    padding: 5px;
+    border-radius: 4px;
+    cursor: pointer; /* Hand cursor on hover */
+}
+
+.detail-list {
+    display: none; /* Initially hidden */
+    margin-top: 10px;
+}
+
+.languages {
+    margin-top: 20px;
+}
+
+.language-flags {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.language-flag {
+    margin-right: 10px;
+    font-size: 24px;
+}
+
+.contact-section, .social-media-section {
+    border-top: 1px solid #eee; /* A light separator */
+    margin-top: 20px;
+    padding-top: 20px;
+}
+
+h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.bio {
+    margin: 20px 0;
+    font-style: italic;
+}
+
+h3 {
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 5px;
+    margin-top: 30px;
+    font-size: 18px;
+}
+
+a {
+    color: #0077cc;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.detail-list {
+    display: block; /* Make this block to always show details */
+     background-color: #f8f8f8; /* light grey background */
+    border-radius: 5px;
+    padding: 10px;
+    margin-top: 5px; /* A little spacing from the title */
+    border: 1px solid #e0e0e0; /* A subtle border */
+}
+
+.language-flag {
+    margin: 0 5px;
+    display: inline-block; /* To align flags horizontally */
+}
+
+.detail-section h3 {
+    border: none; /* Remove the bottom border */
+    margin-top: 20px; /* Add a bit more spacing */
+}
+
+.edit-profile {
+    margin-top: 30px;
+}
+
+.edit-profile a {
+    width:80%;
+    text-align: center;
+    margin: 0 10%;
+    display: inline-block;
+    padding: 10px 15px;
+    border: 2px solid #B7C48C;
+    background-color: #B7C48C;
+    color: #ffffff;
+    font-weight: 600;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.edit-profile a:hover {
+    background-color: #ccd5ae;
+}

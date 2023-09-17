@@ -8,9 +8,19 @@
         <h1>CauseConnect</h1>
       </div>
     </a>
-    <div>
-      <a href="/user/preferences">Profile & Preferences</a>
-      <a href="/logout">Logout</a>
+      <div class="menu">
+        <button class="menu-toggle">☰</button>
+        <div class="dropdown-menu">
+          <a href="/user/profile">Profile</a>
+          <a href="/user/preferences">Preferences</a>
+            <a href="/logout">Log out</a>
+        </div>
     </div>
   </nav>
 </header>
+<script>
+  document.querySelector('.menu-toggle').addEventListener('click', function() {
+      const dropdown = document.querySelector('.dropdown-menu');
+      dropdown.style.display = dropdown.style.display === 'none' || dropdown.style.display === '' ? 'block' : 'none';
+  });
+</script>

@@ -22,8 +22,6 @@ exports.markMet = async (req, res) => {
         metDate: new Date(),
       });
       await connection.save();
-    } else {
-      console.log("Exists");
     }
 
     res.redirect("/mark-met");
@@ -34,7 +32,7 @@ exports.markMet = async (req, res) => {
 };
 
 exports.markUnmet = async (req, res) => {
-  const currentUserId = req.user._id; // Assuming the authenticated user's info is stored in req.user
+  const currentUserId = req.user._id;
   const unmetUserId = req.body.userId;
 
   try {

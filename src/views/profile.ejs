@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= user.name %>'s Profile</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="stylesheet" href="/css/userProfile.css" />
+    <link rel="icon" href="icon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <% 
+    const languageToFlag = {
+        'English': '🇬🇧',
+        'Spanish': '🇪🇸',
+        'French': '🇫🇷',
+        'German': '🇩🇪',
+        'Chinese': '🇨🇳',
+        'Arabic': '🇸🇦',
+        'Hindi': '🇮🇳',
+        'Portuguese': '🇵🇹',
+        'Russian': '🇷🇺',
+        'Japanese': '🇯🇵',
+        'Swahili': '🇹🇿',
+        'Bengali': '🇧🇩',
+        'Urdu': '🇵🇰', 
+        'Italian': '🇮🇹',
+        'Dutch': '🇳🇱'
+    };
+%>
+</head>
+
+<body class="with-background">
+    <%- include('partials/header') %>
+
+    <div class="cards">
+        <div class="user-card">
+            <img class="profile-pic" src="<%= user.profilePicture %>" alt="<%= user.name %>'s Profile Picture" />
+            <h2 class="username"><%= user.name %></h2>
+            <div class="detail-section bio">
+                <p class="bio detail-list"><strong>Bio: </strong><%= user.personalBio %></p>
+            </div>
+
+            <!-- Display Interests -->
+            <div class="detail-section interests">
+                <h3>Interests</h3>
+                <div class="detail-list">
+                    <% user.interests.forEach((interest, index) => { %>
+                        <%= interest %><%= index !== user.interests.length - 1 ? ', ' : '' %>
+                    <% }); %>
+                </div>
+            </div>
+
+            <!-- Display Roles -->
+            <div class="detail-section roles">
+                <h3>Roles</h3>
+                <div class="detail-list">
+                    <% user.roles.forEach((role, index) => { %>
+                        <%= role %><%= index !== user.roles.length - 1 ? ', ' : '' %>
+                    <% }); %>
+                </div>
+            </div>
+
+            <!-- Display Skills -->
+            <div class="detail-section skills">
+                <h3>Skills</h3>
+                <div class="detail-list">
+                    <% user.skills.forEach((skill, index) => { %>
+                        <%= skill %><%= index !== user.skills.length - 1 ? ', ' : '' %>
+                    <% }); %>
+                </div>
+            </div>
+
+            <!-- Languages Spoken -->
+            <div class="detail-section languages">
+                <h3>Languages Spoken</h3>
+                <div class="language-flags">
+                    <% user.languagesSpoken.forEach((language) => { %>
+                        <span class="language-flag">
+                            <%= languageToFlag[language] %>
+                        </span>
+                    <% }); %>
+                </div>
+            </div>
+
+            <!-- Contact Information -->
+            <div class="contact-section">
+                <h3>Contact Information</h3>
+                <p>Email: <a href="mailto:<%= user.contactMethods.email %>"><%= user.contactMethods.email %></a></p>
+                <p>Phone: <a href="tel:<%= user.contactMethods.phone %>"><%= user.contactMethods.phone %></a></p>
+            </div>
+
+    <!-- Social Media Links -->
+    <div class="social-media-section">
+        <h3>Social Media</h3>
+            <% if(user.socialMedia.facebook) { %>
+                <p><i class="fab fa-facebook-f"></i> Facebook: <a href="<%= user.socialMedia.facebook %>" target="_blank"><%= user.socialMedia.facebook %></a></p>
+            <% } %>
+            <% if(user.socialMedia.twitter) { %>
+                <p><i class="fab fa-twitter"></i> Twitter: <a href="<%= user.socialMedia.twitter %>" target="_blank"><%= user.socialMedia.twitter %></a></p>
+            <% } %>
+            <% if(user.socialMedia.instagram) { %>
+                <p><i class="fab fa-instagram"></i> Instagram: <a href="<%= user.socialMedia.instagram %>" target="_blank"><%= user.socialMedia.instagram %></a></p>
+            <% } %>
+            <% if(user.socialMedia.linkedin) { %>
+                <p><i class="fab fa-linkedin-in"></i> LinkedIn: <a href="<%= user.socialMedia.linkedin %>" target="_blank"><%= user.socialMedia.linkedin %></a></p>
+            <% } %>
+            <% if(user.socialMedia.github) { %>
+                <p><i class="fab fa-github"></i> GitHub: <a href="<%= user.socialMedia.github %>" target="_blank"><%= user.socialMedia.github %></a></p>
+            <% } %>
+            <% if(user.socialMedia.website) { %>
+                <p><i class="fas fa-globe"></i> Website: <a href="<%= user.socialMedia.website %>" target="_blank"><%= user.socialMedia.website %></a></p>
+            <% } %>
+    </div>
+    
+
+<!-- Edit Profile Link -->
+<% if(currentUser && currentUser == user.username) { %>
+    <div class="edit-profile">
+        <a href="/user/preferences">Edit Profile</a>
+    </div>
+<% } %>
+
+        </div>
+    </div>
+
+    <script>
+        function toggleDetails(element) {
+            const detailList = element.nextElementSibling;
+            if (detailList.style.display === "none" || detailList.style.display === "") {
+                detailList.style.display = "block";
+            } else {
+                detailList.style.display = "none";
+            }
+        }
+    </script>
+</body>
+
+</html>

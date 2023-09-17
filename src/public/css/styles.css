@@ -144,7 +144,7 @@ button[type="submit"]:hover,
   background-repeat: no-repeat;
   background-attachment: fixed;
   height: 100vh;
-  position: relative; /* Ensure this is relative for absolute positioning of the :after content */
+  position: relative; 
 }
 
 .with-background:after {
@@ -158,6 +158,10 @@ button[type="submit"]:hover,
 
 .content-with-background {
   background-color: rgba(255, 255, 255, 0.9);
-  /*backface-visibility: hidden; /* Ensures the child elements aren't blurred */
-  /*filter: none; */
+}
+
+.page-title {
+  text-align: center;
+  margin: 40px 0;
+  color: #ffff;
 }

@@ -19,7 +19,6 @@
 
   <form action="/user/preferences" method="post" enctype="multipart/form-data">
     <div>
-      <!-- Add profile picture upload field -->
       <fieldset>
         <legend>Profile Picture:</legend>
         <% if (preferences.profilePicture && preferences.profilePicture !=='null' ) { %>
@@ -52,7 +51,6 @@
         </textarea>
       </fieldset>
 
-      <!-- Allow user to set email and phone number -->
       <fieldset> 
         <legend>Contact Methods:</legend>
         <label for="email">Email</label>
@@ -60,7 +58,6 @@
         <label for="phone">Phone</label>
         <input type="text" name="contactMethods.phone" value="<%= preferences.contactMethods.phone || '' %>">        
       </fieldset>
-      <!-- Skills -->
       <fieldset>
         <legend>Skills:</legend>
         <% skillOptions.forEach(skill => { %>
@@ -68,12 +65,9 @@
           <input type="checkbox" name="skills" value="<%= skill %>" <% if(preferences.skills && preferences.skills.includes(skill)) { %>checked<% } %>>
           <label><%= skill %></label><br>
         </div>
-
         <% }); %>
       </fieldset>
 
-
-      <!-- For Interests -->
       <fieldset>
         <legend>Interests:</legend>
         <% interestOptions.forEach(interest => { %>
@@ -84,7 +78,6 @@
         <% }); %>
       </fieldset>
 
-      <!-- For Roles -->
       <fieldset>
         <legend>Roles:</legend>
         <% roleOptions.forEach(role => { %>
@@ -95,7 +88,6 @@
         <% }); %>
       </fieldset>
 
-      <!-- For Languages Spoken -->
       <fieldset>
         <legend>Languages Spoken:</legend>
         <% languageOptions.forEach(language => { %>
@@ -121,7 +113,6 @@
         <% }); %>
       </fieldset>
 
-      <!-- Allow user to set their facebook, twitter, instagram, linkedin, youtube and website -->
       <fieldset>
         <legend>Social Media:</legend>
     

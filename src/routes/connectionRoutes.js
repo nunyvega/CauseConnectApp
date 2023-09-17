@@ -16,10 +16,9 @@ function isAuthenticated(req, res, next) {
 router.post("/markMet", isAuthenticated, connectionController.markMet);
 router.post("/markUnmet", isAuthenticated, connectionController.markUnmet);
 
-module.exports = router;
 router.get("/mark-met", isAuthenticated, async (req, res) => {
   try {
-    const users = await User.find();
+    const users = await User.find().sort({name: 1});
     const connections = await Connection.find({
       $or: [{ user1: req.user._id }, { user2: req.user._id }],
     });
@@ -41,9 +40,12 @@ router.get("/mark-met", isAuthenticated, async (req, res) => {
   }
 });
 
+
 router.get("/members-met", isAuthenticated, connectionController.getMetMembers);
 router.get(
   "/recommendations",
   isAuthenticated,
   userController.getRecommendedUsers
 );
+
+module.exports = router;

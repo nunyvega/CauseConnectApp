@@ -114,7 +114,6 @@ const connectionRoutes = require("./routes/connectionRoutes");
 app.use(connectionRoutes);
 
 app.get("/", ensureAuthenticated, async (req, res) => {
-  // Assuming that the authenticated user's info is stored in req.user
   const currentUserId = req.user._id;
 
   // Get the total number of users, excluding the current user
@@ -140,7 +139,6 @@ app.get("/logout", (req, res) => {
     if (err) {
       console.log(err);
     }
-    // Optionally, you can clear the cookie containing the Express session ID
     res.clearCookie("connect.sid");
     res.redirect("/login"); // Redirect to the login page
   });

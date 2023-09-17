@@ -11,12 +11,12 @@ mongoose.connect('mongodb://localhost/CauseConnect', {
     useUnifiedTopology: true
 }).then(() => {
     console.log('Connected to MongoDB');
-    generateUsers(100); // Generate 100 users, for example.
+    generateUsers(78); // Generate 78 users
 }).catch(err => {
     console.error('Failed to connect to MongoDB:', err);
 });
 
-User.deleteMany({ username: { $ne: 'admin' } }).then(() => {
+User.deleteMany({ username: { $ne: 'admin2' } }).then(() => {
     console.log('Deleted all users except for admin.');
 }).catch(err => {
     console.error('Failed to delete users:', err);
@@ -51,7 +51,7 @@ function generateUsers(numberOfUsers) {
             favoriteBook: faker.random.arrayElement(["The Great Gatsby", "Moby Dick", "To Kill a Mockingbird"]),
             preferredGreeting: generateRandomItems('preferredGreeting', 1, 5),
             profilePicture: i % 2 === 0 ? 'https://randomuser.me/api/portraits/men/' + i + '.jpg' : 'https://randomuser.me/api/portraits/women/' + i + '.jpg',
-            languagesSpoken: generateRandomItems('languagesSpoken', 2, 6),
+            languagesSpoken: generateRandomItems('languagesSpoken', 1, 4),
             personalBio: faker.lorem.paragraphs(3),
             location: faker.address.city(),
             contactMethods: {

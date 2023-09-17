@@ -28,47 +28,80 @@
         'Dutch': '🇳🇱'
     };
 %>
-<h1>Recommended Users to Meet</h1>
+
+<h1 class="page-title">Recommended Users to Meet</h1>
 <div class="cards">
     <% users.forEach(user => { %>
     <div class="user-card">
         <img class="profile-pic" src="<%= user.profilePicture %>" alt="User's Profile Picture" />
-        <h2 class="username">@<%= user.name %></h2>
+        <div class="name-section">
+            <h2 class="name"><%= user.name %></h2>
+            <p class="username">@<%= user.username %></p>
+
+         </div>
         <div class="similarity-score">
             <label for="similarity">Similarity: <%= user.similarityScore.toFixed(2) %> %</label>
             <meter id="similarity" value="<%= user.similarityScore %>" min="0" max="100"></meter>
         </div>
-        <p class="interests">
-            Shared Interests:
-            <% user.interests.forEach((interest, index) => { %>
-            <%= interest %><%= index !== user.interests.length - 1 ? ',' : '' %>
-            <% }); %>
-        </p>
-        <!-- Displaying roles, skills, and languages -->
-        <p class="roles">
-            Roles:
-            <% user.roles.forEach((role, index) => { %>
-            <%= role %><%= index !== user.roles.length - 1 ? ',' : '' %>
-            <% }); %>
-        </p>
-        <p class="skills">
-            Skills:
-            <% user.skills.forEach((skill, index) => { %>
-            <%= skill %><%= index !== user.skills.length - 1 ? ',' : '' %>
-            <% }); %>
-        </p>
+        <div class="detail-section interests">
+          Shared Interests: 
+          <span class="detail-count" onclick="toggleDetails(this)"> <%= user.interests.length %> </span>
+          <div class="detail-list">
+              <% user.interests.forEach((interest, index) => { %>
+                  <%= interest %><%= index !== user.interests.length - 1 ? ',' : '' %>
+              <% }); %>
+          </div>
+      </div>
+      
+      <div class="detail-section roles">
+          Roles: 
+          <span class="detail-count" onclick="toggleDetails(this)"> <%= user.roles.length %> </span>
+          <div class="detail-list">
+              <% user.roles.forEach((role, index) => { %>
+                  <%= role %><%= index !== user.roles.length - 1 ? ',' : '' %>
+              <% }); %>
+          </div>
+      </div>
+      
+      <div class="detail-section skills">
+          Skills: 
+          <span class="detail-count" onclick="toggleDetails(this)"> <%= user.skills.length %> </span>
+          <div class="detail-list">
+              <% user.skills.forEach((skill, index) => { %>
+                  <%= skill %><%= index !== user.skills.length - 1 ? ',' : '' %>
+              <% }); %>
+          </div>
+      </div>
+      
+
         <p class="languages">
             Languages Spoken:
               <div class="language-flags">
                 <% user.languagesSpoken.forEach((language) => { %>
+                  <% console.log(language) %>
                   <div class="language-flag">
-                    <%= languageToFlag[language] || language %>
+                    <%= languageToFlag[language] %>
                   </div>
                 <% }); %>
             </div>
         </p>
+        <a href="/user/<%= user.username %>" class="profile-button button">View Profile</a>
+
     </div>
     <% }); %>
 </div>
 </body>
+<script>
+  function toggleDetails(element) {
+    console.log('clicked')
+    console.log(element)
+      const detailList = element.nextElementSibling;
+      console.log(detailList)
+      if (detailList.style.display === "none" || detailList.style.display === "") {
+          detailList.style.display = "block";
+      } else {
+          detailList.style.display = "none";
+      }
+  }
+</script>
 </html>

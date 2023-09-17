@@ -9,7 +9,7 @@
   </head>
   <body class="with-background">
     <%- include('partials/header') %>
-    <h1>All Users</h1>
+    <h1 class="page-title">All Users</h1>
     <ul>
       <% users.forEach(user => { %> <% if(String(user._id) !==
       String(currentUser._id)) { %>

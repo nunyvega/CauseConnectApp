@@ -25,8 +25,6 @@ exports.renderPreferencesPage = async (req, res) => {
     const greetingOptions =
       User.schema.path("preferredGreeting").caster.enumValues;
 
-    console.log(userPreferences)
-    console.log(roleOptions)
     res.render("preferences", {
       preferences: userPreferences,
       skillOptions: skillOptions,
@@ -124,6 +122,7 @@ exports.getRecommendedUsers = async (req, res) => {
           roles: { $ifNull: ["$roles", []] },
           skills: { $ifNull: ["$skills", []] },
           languagesSpoken: { $ifNull: ["$languagesSpoken", []] },
+          username: 1,
           profilePicture: 1,
           name: 1,
           age: 1,
@@ -198,7 +197,6 @@ exports.getRecommendedUsers = async (req, res) => {
     ];
     
     const users = await User.aggregate(pipeline);
-    console.log(users[0])
     res.render("recommendedUsers", { users });
   } catch (error) {
     console.error(error);
