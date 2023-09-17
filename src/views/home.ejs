@@ -14,14 +14,14 @@
       <div class="percentage-circle-container" data-percentage="<%= percentageMet %>">
         <svg class="progress-ring" width="210" height="210">
             <circle class="progress-ring__circle" stroke="#fff" stroke-width="10" fill="transparent" r="100" cx="105" cy="105" />
-            <circle class="progress-ring__progress" stroke="#B7C48C" stroke-width="10" fill="transparent" r="100" cx="105" cy="105" />
+            <circle class="progress-ring__progress" stroke="#b3c96b" stroke-width="10" fill="transparent" r="100" cx="105" cy="105" />
         </svg>
         <div class="percentage-text">
             <span class="percentage-value"><%= percentageMet.toFixed(0) %></span>%
         </div>
       </div>
     
-      <div class="members-met" style="background-image: linear-gradient(to right, #ccd5ae 0%, #ccd5ae <%= percentageMet %>%, #f8f8f8 <%= percentageMet %>%, #f8f8f8 100%);">
+      <div class="members-met" style="background-image: linear-gradient(to right, #b3c96b 0%, #b3c96b <%= percentageMet %>%, #ccd5ae <%= percentageMet %>%, #ccd5ae 100%);">
         <p>
             <%= Math.round(percentageMet * totalUsers / 100) %> of <%= totalUsers %> members met
         </p>

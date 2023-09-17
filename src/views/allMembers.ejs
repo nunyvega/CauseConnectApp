@@ -9,7 +9,7 @@
   </head>
   <body class="with-background">
     <%- include('partials/header') %>
-    <h1 class="page-title">All Users</h1>
+    <h1 class="page-title page-title-no-background">All Users</h1>
 <!-- Navigation Tabs -->
 <div class="alphabet-nav">
   <% for (let letter in groupedUsers) { %>
@@ -33,12 +33,12 @@
               <% if (user.met) { %>
               <form action="/markUnmet" method="post">
                 <input type="hidden" name="userId" value="<%= user._id %>" />
-                <button type="submit">Mark as Unmet</button>
+                <button class="met-unmet" type="submit">Mark as Unmet</button>
               </form>
               <% } else { %>
               <form action="/markMet" method="post">
                 <input type="hidden" name="userId" value="<%= user._id %>" />
-                <button type="submit">Mark as Met</button>
+                <button class="met-unmet" type="submit">Mark as Met</button>
               </form>
               <% } %>
             </li>

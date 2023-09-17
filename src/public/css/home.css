@@ -3,7 +3,6 @@
   margin: 50px;
 }
 .percentage-circle-container {
-  border: 10px solid #ccd5ae;
   border-radius: 50%;
   display: flex;
   justify-content: center;
@@ -25,8 +24,8 @@
 }
 .cta-button,
 .cta-button:hover {
+  background-color: #b3c96b;
   padding: 15px 30px;
-  background-color: #ccd5ae;
   color: #fff;
   text-decoration: none;
   margin: 10px;
@@ -35,7 +34,7 @@
   transition: background-color 0.3s;
 }
 .cta-button:hover {
-  background-color: #b3c96b;
+  background-color: #a7cb30;
 }
 
 
@@ -57,7 +56,7 @@
 }
 
 .members-met {
-  background-color: #f8f8f8; /* A soft gray background */
+  background-color: #B7C48C; /* A soft gray background */
   border-radius: 8px; /* Rounded corners */
   padding: 20px; /* Spacing inside the container */
   margin-top: 20px; /* Space above the container */
@@ -71,5 +70,7 @@
 
 .members-met p {
   margin: 0; /* Remove default margin from the paragraph for better control */
-  color: #333; /* Dark gray text color */
+  color: #fff ;
+  font-weight: bold
+  ; /* Dark gray text color */
 }

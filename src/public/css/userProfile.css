@@ -50,6 +50,7 @@ body.with-background {
 .detail-list {
     display: none; /* Initially hidden */
     margin-top: 10px;
+    min-height: 15px; /* A minimum height to prevent it from collapsing */
 }
 
 .languages {

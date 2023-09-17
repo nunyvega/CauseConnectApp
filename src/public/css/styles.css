@@ -16,6 +16,7 @@ p, h1, h2, h3, .button {
   background-color: #ffffff;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   text-align: center;
+  border-radius: 20px;
 }
 
 .alert.alert-success {
@@ -68,7 +69,8 @@ button[type="submit"]:hover,
 
 a {
   text-decoration: none;
-  color: #ccd5ae;
+  color: #b3c96b;
+  font-weight: bold;
 }
 
 a:hover {
@@ -130,11 +132,11 @@ button,
 }
 button[type="submit"],
 .button {
-  background-color: #ccd5ae;
+  background-color: #b3c96b;
 }
 button[type="submit"]:hover,
 .button:hover {
-  background-color: #b3c96b;
+  background-color: #a7cb30;
   transform: scale(1.05);
 }
 
@@ -163,5 +165,9 @@ button[type="submit"]:hover,
 .page-title {
   text-align: center;
   margin: 40px 0;
-  color: #ffff;
+  color: #b3c96b;
+}
+
+.page-title-no-background {
+  color: #fff;
 }
