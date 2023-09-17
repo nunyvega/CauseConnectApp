@@ -33,12 +33,21 @@ router.get("/mark-met", isAuthenticated, async (req, res) => {
       user.met = metUserIds.includes(user._id.toString());
     });
 
-    res.render("allMembers", { users, currentUser: req.user });
+    // Group the users by the first letter of their name
+    const groupedUsers = users.reduce((acc, user) => {
+      const firstLetter = user.name[0].toUpperCase();
+      if (!acc[firstLetter]) acc[firstLetter] = [];
+      acc[firstLetter].push(user);
+      return acc;
+    }, {});
+
+    res.render("allMembers", { groupedUsers, currentUser: req.user });
   } catch (error) {
     console.error(error);
     res.status(500).send("An error occurred");
   }
 });
+
 
 
 router.get("/members-met", isAuthenticated, connectionController.getMetMembers);

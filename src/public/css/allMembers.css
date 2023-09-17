@@ -1,6 +1,6 @@
 .userImage {
-  width: 80px;
-  height: 80px;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
   margin-right: 15px;
 }
@@ -8,10 +8,62 @@
   display: flex;
   align-items: center;
 }
-.username {
-  color: gray;
-  font-weight: bold;
-}
+
 .name {
   margin-left: 5px;
+  color: black;
+  font-weight: bold;
 }
+
+.card {
+  margin-bottom: 3px;
+  padding: 8px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.alphabet-nav {
+  background-color: #f0f0f0;
+  display: flex;
+  justify-content: center;
+  margin: 0 10%;
+  width:80%;
+  border-radius: 20px;
+  flex-wrap: wrap; /* To wrap content if there are many letters */
+}
+
+.alphabet-nav a {
+  margin: 5px 10px;
+  padding: 5px 8px;
+  text-decoration: none;
+  color: black;
+  border: 1px solid black;
+  border-radius: 50%; /* Makes it circular */
+  transition: background-color 0.3s;
+}
+
+.alphabet-nav a:hover {
+  background-color: #f0f0f0;
+}
+
+.section-title {
+  margin: 5px 10px;
+  padding: 5px 8px;
+  text-decoration: none;
+  color: black;
+  background-color: #f0f0f0;
+  border: 1px solid black;
+  border-radius: 50%; /* Makes it circular */
+  transition: background-color 0.3s;
+}
+
+.section {
+  padding: 0px;
+  background-color: transparent;
+  border: transparent
+}
+
+.group{
+  margin: 0;
+padding:0;
+width:90%;}

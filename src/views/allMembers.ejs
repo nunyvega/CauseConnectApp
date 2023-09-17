@@ -10,33 +10,45 @@
   <body class="with-background">
     <%- include('partials/header') %>
     <h1 class="page-title">All Users</h1>
-    <ul>
-      <% users.forEach(user => { %> <% if(String(user._id) !==
-      String(currentUser._id)) { %>
-      <li>
-        <div class="userInfo">
-          <img
-            src="<%= user.profilePicture %>"
-            class="userImage"
-            alt="User's Profile Picture"
-          />
-          <p class="username">@<%= user.username %></p>
-          <p class="name"><%= user.name %></p>
-        </div>
+<!-- Navigation Tabs -->
+<div class="alphabet-nav">
+  <% for (let letter in groupedUsers) { %>
+    <a href="#<%= letter %>"><%= letter %></a>
+  <% } %>
+</div>
 
-        <% if (user.met) { %>
-        <form action="/markUnmet" method="post">
-          <input type="hidden" name="userId" value="<%= user._id %>" />
-          <button type="submit">Mark as Unmet</button>
-        </form>
-        <% } else { %>
-        <form action="/markMet" method="post">
-          <input type="hidden" name="userId" value="<%= user._id %>" />
-          <button type="submit">Mark as Met</button>
-        </form>
-        <% } %>
-      </li>
-      <% } %> <% }) %>
-    </ul>
+<!-- Display Users by Section -->
+<ul>
+  <% for (let letter in groupedUsers) { %>
+    <li class="section" id="<%= letter %>">
+      <h2 class="section-title"><%= letter %></h2>
+      <ul class="group">
+        <% groupedUsers[letter].forEach(user => { %>
+          <% if(String(user._id) !== String(currentUser._id)) { %>
+            <li class="card">
+              <div class="userInfo">
+                <img src="<%= user.profilePicture %>" class="userImage" alt="User's Profile Picture" />
+                <a class="name" href="/user/<%= user.username %>"><%= user.name %></a>
+              </div>
+              <% if (user.met) { %>
+              <form action="/markUnmet" method="post">
+                <input type="hidden" name="userId" value="<%= user._id %>" />
+                <button type="submit">Mark as Unmet</button>
+              </form>
+              <% } else { %>
+              <form action="/markMet" method="post">
+                <input type="hidden" name="userId" value="<%= user._id %>" />
+                <button type="submit">Mark as Met</button>
+              </form>
+              <% } %>
+            </li>
+          <% } %>
+        <% }) %>
+      </ul>
+    </li>
+  <% } %>
+</ul>
+
+
   </body>
 </html>
