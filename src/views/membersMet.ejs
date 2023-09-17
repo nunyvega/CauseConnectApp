@@ -6,19 +6,92 @@
     <title>Members You Met</title>
     <link rel="stylesheet" href="/css/styles.css" />
     <link rel="stylesheet" href="/css/membersMet.css" />
+    <script src="/js/membersMet.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
   </head>
   <body class="with-background">
     <%- include('partials/header') %>
     <h1 class="page-title page-title-no-background">Members You Met</h1>
     <ul>
-      <% users.forEach(user => { %>
-      <li>
-        <div class="userInfo">
-          <img src="<%= user.profilePicture %>" alt="User's Profile Picture" />
-          <p class="username">@<%= user.username %></p>
-        </div>
-      </li>
-      <% }) %>
+      <% users.forEach(user => { %> 
+        <li>
+            <div class="userInfo">
+                <img src="<%= user.profilePicture %>" class="userProfilePic" alt="User's Profile Picture" />
+                <p class="username"><%= user.name %></p>
+                <div class="button-container">
+                <button class="contact-info-btn button" data-user-id="<%= user._id %>">
+                    Contact Info
+                </button>
+                <a href="/user/<%= user.username %>" class="profile-button button">View Profile</a>
+              </div>
+    
+                <!-- Hidden Contact Information -->
+                <div class="contact-info-hidden" id="contact-info-<%= user._id %>">
+                    
+                    <% if(user.contactMethods.email) { %>
+                    <p class="contact-detail">
+                        <i class="fas fa-envelope"></i> Email: 
+                        <a href="mailto:<%= user.contactMethods.email %>"><%= user.contactMethods.email %></a>
+                    </p>
+                    <% } %> 
+    
+                    <% if(user.contactMethods.phone) { %>
+                    <p class="contact-detail">
+                        <i class="fas fa-phone"></i> Phone: 
+                        <a href="tel:<%= user.contactMethods.phone%>"><%= user.contactMethods.phone %></a>
+                    </p>
+                    <% } %> 
+    
+                    <% if(user.socialMedia.facebook) { %>
+                    <p class="contact-detail">
+                        <i class="fab fa-facebook-f"></i> Facebook: 
+                        <a href="<%= user.socialMedia.facebook %>" target="_blank"><%= user.socialMedia.facebook %></a>
+                    </p>
+                    <% } %> 
+    
+                    <% if(user.socialMedia.twitter) { %>
+                    <p class="contact-detail">
+                        <i class="fab fa-twitter"></i> Twitter: 
+                        <a href="<%= user.socialMedia.twitter %>" target="_blank"><%= user.socialMedia.twitter %></a>
+                    </p>
+                    <% } %> 
+    
+                    <% if(user.socialMedia.instagram) { %>
+                    <p class="contact-detail">
+                        <i class="fab fa-instagram"></i> Instagram: 
+                        <a href="<%= user.socialMedia.instagram %>" target="_blank"><%= user.socialMedia.instagram %></a>
+                    </p>
+                    <% } %> 
+    
+                    <% if(user.socialMedia.linkedin) { %>
+                    <p class="contact-detail">
+                        <i class="fab fa-linkedin-in"></i> LinkedIn: 
+                        <a href="<%= user.socialMedia.linkedin %>" target="_blank"><%= user.socialMedia.linkedin %></a>
+                    </p>
+                    <% } %> 
+    
+                    <% if(user.socialMedia.github) { %>
+                    <p class="contact-detail">
+                        <i class="fab fa-github"></i> GitHub: 
+                        <a href="<%= user.socialMedia.github %>" target="_blank"><%= user.socialMedia.github %></a>
+                    </p>
+                    <% } %> 
+    
+                    <% if(user.socialMedia.website) { %>
+                    <p class="contact-detail">
+                        <i class="fas fa-globe"></i> Website: 
+                        <a href="<%= user.socialMedia.website %>" target="_blank"><%= user.socialMedia.website %></a>
+                    </p>
+                    <% } %>
+                    
+                </div>
+            </div>
+        </li>
+    <% }) %>
+    
     </ul>
   </body>
 </html>

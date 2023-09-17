@@ -63,11 +63,14 @@ exports.getMetMembers = async (req, res) => {
       $or: [{ user1: req.user._id }, { user2: req.user._id }],
     });
 
-    const metUserIds = connections.map((conn) =>
-      conn.user1.toString() === req.user._id.toString()
-        ? conn.user2.toString()
-        : conn.user1.toString()
-    );
+    const metUserIds = connections
+      .map((conn) =>
+        conn.user1.toString() === req.user._id.toString()
+          ? conn.user2.toString()
+          : conn.user1.toString()
+      )
+      // filter out the current user's ID from the array
+      .filter(userId => userId !== req.user._id.toString());
 
     const metUsers = await User.find({ _id: { $in: metUserIds } });
 
@@ -76,4 +79,5 @@ exports.getMetMembers = async (req, res) => {
     console.error(error);
     res.status(500).send("An error occurred while fetching met members.");
   }
-};
+}
+

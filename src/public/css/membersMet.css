@@ -40,3 +40,86 @@ img {
   color: #444;
   margin-left: 10px;
 }
+
+.contact-info-hidden {
+  display: none;
+  background-color: #f9f9f9;
+  padding: 10px;
+  border: 1px solid #ddd;
+  margin-top: 10px;
+}
+
+.userInfo {
+  display: flex;
+  flex-wrap: wrap; /* Allows elements to wrap to next line if there isn't enough space */
+  align-items: center;
+  width: 100%;
+  padding: 10px;
+  position: relative;
+}
+
+img .userProfilePic {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.username {
+  color: #444;
+  margin-left: 10px;
+  font-weight: bold; /* Bold username for emphasis */
+  flex-grow: 1;
+}
+
+.button {
+  background-color: #b3c96b;
+  color: #fff;
+  margin: 10px 0;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  padding: 7px 15px;
+  text-align: center;
+  transition: background-color 0.3s, transform 0.1s;
+  /* don't separate the button in two lines */
+  white-space: nowrap;
+
+}
+
+.button:hover {
+  background-color: #a7cb30;
+  transform: scale(1.05); 
+}
+
+.contact-info-btn {
+  background-color: transparent;
+  color: #b3c96b;
+  border: 1px solid #b3c96b;
+  margin-right: 10px;
+}
+
+.contact-info-btn:hover {
+  color: #fff;
+  background-color: #b3c96b;
+}
+
+.contact-info-hidden {
+  display: none;
+  background-color: #f9f9f9;
+  padding: 10px;
+  border: 1px solid #ddd;
+  margin-top: 10px;
+  width: 100%; /* Make it stretch across the card */
+}
+
+.contact-detail {
+  margin: 10px 0;
+  display: flex;
+  align-items: center;
+}
+
+.contact-detail i {
+  margin-right: 10px;
+}
+

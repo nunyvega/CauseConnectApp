@@ -37,6 +37,13 @@
         <div class="user-card">
             <img class="profile-pic" src="<%= user.profilePicture %>" alt="<%= user.name %>'s Profile Picture" />
             <h2 class="username"><%= user.name %></h2>
+
+            <!-- Edit Profile Link -->
+<% if(currentUser && currentUser == user.username) { %>
+    <div class="edit-profile">
+        <a href="/user/preferences" class="button">Edit Profile</a>
+    </div>
+<% } %>
             <div class="detail-section bio">
                 <h3>Bio</h3>
                 <p class="bio detail-list"> <%= user.personalBio %></p>
@@ -115,12 +122,7 @@
     </div>
     
 
-<!-- Edit Profile Link -->
-<% if(currentUser && currentUser == user.username) { %>
-    <div class="edit-profile">
-        <a href="/user/preferences">Edit Profile</a>
-    </div>
-<% } %>
+
 
         </div>
     </div>
