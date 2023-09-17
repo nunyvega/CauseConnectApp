@@ -9,26 +9,6 @@
 </head>
 <body class="with-background">
 <%- include('partials/header') %>
-<% 
-    const languageToFlag = {
-        'English': '🇬🇧',
-        'Spanish': '🇪🇸',
-        'French': '🇫🇷',
-        'German': '🇩🇪',
-        'Chinese': '🇨🇳',
-        'Arabic': '🇸🇦',
-        'Hindi': '🇮🇳',
-        'Portuguese': '🇵🇹',
-        'Russian': '🇷🇺',
-        'Japanese': '🇯🇵',
-        'Swahili': '🇹🇿',
-        'Bengali': '🇧🇩',
-        'Urdu': '🇵🇰', 
-        'Italian': '🇮🇹',
-        'Dutch': '🇳🇱'
-    };
-%>
-
 <h1 class="page-title page-title-no-background">Recommended Users to Meet</h1>
 <div class="cards">
     <% users.forEach(user => { %>

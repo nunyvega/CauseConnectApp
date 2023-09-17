@@ -137,3 +137,56 @@ a:hover {
 .edit-profile a:hover {
     background-color: #ccd5ae;
 }
+
+
+/* This section is added for social media icons */
+.social-media-icons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
+.social-media-icons a {
+    color: #8c8c8c;
+    transition: color 0.3s ease;
+    font-size: 36px;
+    margin: 0 10px;
+}
+
+.social-media-icons a:hover {
+    color: #0077cc;
+}
+
+/* Enhance the profile card aesthetics */
+.user-card {
+    padding: 30px 50px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* Additional spacing for headers */
+h3 {
+    margin-bottom: 15px;
+    margin-top: 35px;
+}
+
+/* Bio Section */
+.bio {
+    margin: 15px 0;
+    font-style: italic;
+    padding: 10px;
+    border: 1px solid #e6e6e6;
+    border-radius: 4px;
+    background-color: #fafafa;
+}
+
+/* Edit Profile Button */
+.edit-profile a {
+    background-color: #0077cc;
+    color: white;
+    border: none;
+}
+
+.edit-profile a:hover {
+    background-color: #005fa3;
+    color: white;
+}

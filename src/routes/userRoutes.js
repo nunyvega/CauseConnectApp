@@ -5,6 +5,7 @@ const path = require("path");
 const upload = require("../multerConfig");
 const router = express.Router();
 const User = require("../models/User");
+const languageToFlag = require("../public/js/languageToFlag");
 
 function isAuthenticated(req, res, next) {
   if (req.isAuthenticated()) {
@@ -32,6 +33,7 @@ router.get('/profile', isAuthenticated, async (req, res) => {
       res.render('profile', { 
         user: user,
         currentUser: req.user.username,
+        languageToFlag: languageToFlag,
       });
     }
   } catch (error) {

@@ -1,6 +1,7 @@
 const User = require("../models/User");
 const Connection = require("../models/Connection");
 const { ObjectId } = require('mongodb');
+const languageToFlag = require("../public/js/languageToFlag");
 
 exports.getAllUsers = async (req, res) => {
   try {
@@ -197,7 +198,7 @@ exports.getRecommendedUsers = async (req, res) => {
     ];
     
     const users = await User.aggregate(pipeline);
-    res.render("recommendedUsers", { users });
+    res.render("recommendedUsers", { users: users, languageToFlag: languageToFlag });
   } catch (error) {
     console.error(error);
     res.status(500).send("An error occurred");
