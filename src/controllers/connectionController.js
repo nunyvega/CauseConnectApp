@@ -1,12 +1,12 @@
 const Connection = require("../models/Connection");
 const User = require("../models/User");
 
+// Mark another user as met by the authenticated user
 exports.markMet = async (req, res) => {
-  const currentUserId = req.user._id; // This assumes the authenticated user's info is stored in req.user
+  const currentUserId = req.user._id;
   const metUserId = req.body.userId;
 
   try {
-    // Check if the connection already exists
     const existingConnection = await Connection.findOne({
       $or: [
         { user1: currentUserId, user2: metUserId },
@@ -15,7 +15,6 @@ exports.markMet = async (req, res) => {
     });
 
     if (!existingConnection) {
-      // Create a new connection
       const connection = new Connection({
         user1: currentUserId,
         user2: metUserId,
@@ -26,17 +25,17 @@ exports.markMet = async (req, res) => {
 
     res.redirect("/mark-met");
   } catch (error) {
-    console.error(error);
+    console.error("Error marking user as met:", error);
     res.status(500).send("An error occurred");
   }
 };
 
+// Mark another user as unmet by the authenticated user
 exports.markUnmet = async (req, res) => {
   const currentUserId = req.user._id;
   const unmetUserId = req.body.userId;
 
   try {
-    // Find and remove the connection
     const existingConnection = await Connection.findOneAndRemove({
       $or: [
         { user1: currentUserId, user2: unmetUserId },
@@ -44,19 +43,14 @@ exports.markUnmet = async (req, res) => {
       ],
     });
 
-    if (existingConnection) {
-      console.log("Connection removed");
-    } else {
-      console.log("Connection not found");
-    }
-
     res.redirect("/mark-met");
   } catch (error) {
-    console.error(error);
+    console.error("Error marking user as unmet:", error);
     res.status(500).send("An error occurred");
   }
 };
 
+// Get a list of members met by the authenticated user
 exports.getMetMembers = async (req, res) => {
   try {
     const connections = await Connection.find({
@@ -69,15 +63,13 @@ exports.getMetMembers = async (req, res) => {
           ? conn.user2.toString()
           : conn.user1.toString()
       )
-      // filter out the current user's ID from the array
-      .filter(userId => userId !== req.user._id.toString());
+      .filter((userId) => userId !== req.user._id.toString());
 
     const metUsers = await User.find({ _id: { $in: metUserIds } });
 
     res.render("membersMet", { users: metUsers });
   } catch (error) {
-    console.error(error);
+    console.error("Error fetching met members:", error);
     res.status(500).send("An error occurred while fetching met members.");
   }
-}
-
+};

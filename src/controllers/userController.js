@@ -1,23 +1,24 @@
 const User = require("../models/User");
 const Connection = require("../models/Connection");
-const { ObjectId } = require('mongodb');
+const { ObjectId } = require("mongodb");
 const languageToFlag = require("../public/js/languageToFlag");
 
+// Fetch all users excluding their passwords
 exports.getAllUsers = async (req, res) => {
   try {
-    const users = await User.find().select("-password"); // Excluding password field
+    const users = await User.find().select("-password");
     res.render("users", { users });
   } catch (err) {
     res.status(400).send(err.message);
   }
 };
 
+// Render the user preferences page
 exports.renderPreferencesPage = async (req, res) => {
   try {
     const userId = req.user._id;
     const userPreferences = await exports.getUserPreferences(userId);
 
-    // Get schema enum values for skills, interests, roles, and languages
     const skillOptions = User.schema.path("skills").caster.enumValues;
     const interestOptions = User.schema.path("interests").caster.enumValues;
     const roleOptions = User.schema.path("roles").caster.enumValues;
@@ -28,11 +29,11 @@ exports.renderPreferencesPage = async (req, res) => {
 
     res.render("preferences", {
       preferences: userPreferences,
-      skillOptions: skillOptions,
-      interestOptions: interestOptions,
-      roleOptions: roleOptions,
-      languageOptions: languageOptions,
-      greetingOptions: greetingOptions,
+      skillOptions,
+      interestOptions,
+      roleOptions,
+      languageOptions,
+      greetingOptions,
       personalBio: userPreferences.personalBio,
       successMessage: req.flash("success"),
     });
@@ -42,43 +43,29 @@ exports.renderPreferencesPage = async (req, res) => {
   }
 };
 
+// Update user's preferences
 exports.updateUserPreferences = async (req, res) => {
   try {
     const userId = req.user._id;
-    // Check if a new image was uploaded
     if (req.file) {
       req.body.profilePicture = "/uploads/" + req.file.filename;
     }
-    const user = await User.findByIdAndUpdate(userId, req.body, { new: true });
+    await User.findByIdAndUpdate(userId, req.body, { new: true });
     req.flash("success", "Preferences updated successfully");
     res.redirect("/user/preferences");
   } catch (err) {
-    console.error(err); // It should be err not error
+    console.error(err);
     req.flash("error", "An error occurred while updating preferences");
     res.redirect("/user/preferences");
   }
 };
 
+// Get a specific user's preferences
 exports.getUserPreferences = async function (userId) {
-  const user = await User.findById(userId);
-  return {
-    name: user.name,
-    age: user.age,
-    skills: user.skills,
-    interests: user.interests,
-    roles: user.roles,
-    favoriteBook: user.favoriteBook,
-    preferredGreeting: user.preferredGreeting,
-    profilePicture: user.profilePicture,
-    languagesSpoken: user.languagesSpoken,
-    location: user.location,
-    contactMethods: user.contactMethods,
-    socialMedia: user.socialMedia,
-    personalBio: user.personalBio,
-  };
+  const user = await User.findById(userId).select("-password");
+  return user;
 };
 
-// Weighted values for each preference category
 const WEIGHTS = {
   interests: 1,
   roles: 2,
@@ -86,39 +73,40 @@ const WEIGHTS = {
   languagesSpoken: 3,
 };
 
+// Get recommended users based on preferences
 exports.getRecommendedUsers = async (req, res) => {
   try {
     const currentUser = (await User.findById(req.user._id)) || {};
-    currentUser.interests = currentUser.interests || [];
-    currentUser.roles = currentUser.roles || [];
-    currentUser.skills = currentUser.skills || [];
-    currentUser.languagesSpoken = currentUser.languagesSpoken || [];
 
-    let MAX_SCORE =
-      currentUser.interests.length * WEIGHTS.interests +
-      currentUser.roles.length * WEIGHTS.roles +
-      currentUser.skills.length * WEIGHTS.skills +
-      currentUser.languagesSpoken.length * WEIGHTS.languagesSpoken;
+    // Ensure currentUser has all required properties or set them to empty arrays
+    ["interests", "roles", "skills", "languagesSpoken"].forEach((prop) => {
+      currentUser[prop] = currentUser[prop] || [];
+    });
 
-    if (MAX_SCORE === 0) {
-      MAX_SCORE = 1;
-    }
+    // Calculate max score based on current user's preferences and weights
+    const MAX_SCORE =
+      Object.keys(WEIGHTS).reduce(
+        (acc, key) => acc + currentUser[key].length * WEIGHTS[key],
+        0
+      ) || 1;
+
     const connections = await Connection.find({
       $or: [{ user1: req.user._id }, { user2: req.user._id }],
     });
-  
-    const metUserIds = connections.map((conn) =>
-    new ObjectId(conn.user1.toString() === req.user._id.toString()
-      ? conn.user2.toString()
-      : conn.user1.toString())
-  );
 
+    const metUserIds = connections.map(
+      (conn) =>
+        new ObjectId(
+          conn.user1.toString() === req.user._id.toString()
+            ? conn.user2.toString()
+            : conn.user1.toString()
+        )
+    );
+
+    // Recommendation pipeline
     const pipeline = [
       {
-        $match: { _id: { $ne: currentUser._id } }, // Exclude current user
-      },
-      {
-        $match: { _id: { $nin: metUserIds } } // Exclude already met users
+        $match: { _id: { $ne: currentUser._id, $nin: metUserIds } },
       },
       {
         $project: {
@@ -159,7 +147,6 @@ exports.getRecommendedUsers = async (req, res) => {
           },
         },
       },
-
       {
         $addFields: {
           MAX_SCORE_CONSTANT: MAX_SCORE,
@@ -194,14 +181,16 @@ exports.getRecommendedUsers = async (req, res) => {
           },
         },
       },
-
       {
-        $sort: { score: -1 }, // Sort by descending score
+        $sort: { score: -1 },
       },
     ];
-    
+
     const users = await User.aggregate(pipeline);
-    res.render("recommendedUsers", { users: users, languageToFlag: languageToFlag });
+    res.render("recommendedUsers", {
+      users: users,
+      languageToFlag: languageToFlag,
+    });
   } catch (error) {
     console.error(error);
     res.status(500).send("An error occurred");
