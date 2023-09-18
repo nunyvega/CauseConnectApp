@@ -3,12 +3,12 @@ const faker = require('faker');
 const User = require("../models/User");
 const Connection = require("../models/Connection");
 const bcrypt = require('bcrypt');
+require('dotenv').config();
 
 // Use the same password for every user to test the app faster
 const hashedPass = bcrypt.hashSync('admin', 10);
 
 // Connect to MongoDB and seed data
-require('dotenv').config();
 const mongoUri = process.env.MONGODB_URI;
 const mongoLocalUri = "mongodb://localhost/CauseConnect";
 

@@ -12,6 +12,7 @@ const Connection = require("./models/Connection");
 const ensureAuthenticated = require("./middleware/authMiddleware");
 const { spawn } = require('child_process');
 const statisticToShow = require('./public/js/statisticsPool');
+require('dotenv').config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -61,7 +62,6 @@ passport.deserializeUser(async (id, done) => {
 });
 
 // MongoDB connection setup
-require('dotenv').config();
 const mongoUri = process.env.MONGODB_URI;
 const mongoLocalUri = "mongodb://localhost/CauseConnect";
 
