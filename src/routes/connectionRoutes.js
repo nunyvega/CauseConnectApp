@@ -4,19 +4,12 @@ const userController = require("../controllers/userController");
 const router = express.Router();
 const User = require("../models/User");
 const Connection = require("../models/Connection");
+const ensureAuthenticated = require("../middleware/authMiddleware");
 
-function isAuthenticated(req, res, next) {
-  if (req.isAuthenticated()) {
-    return next();
-  }
-  console.log("User is not authenticated");
-  res.redirect("/login");
-}
+router.post("/markMet", ensureAuthenticated, connectionController.markMet);
+router.post("/markUnmet", ensureAuthenticated, connectionController.markUnmet);
 
-router.post("/markMet", isAuthenticated, connectionController.markMet);
-router.post("/markUnmet", isAuthenticated, connectionController.markUnmet);
-
-router.get("/mark-met", isAuthenticated, async (req, res) => {
+router.get("/mark-met", ensureAuthenticated, async (req, res) => {
   try {
     const users = await User.find().sort({name: 1});
     const connections = await Connection.find({
@@ -52,10 +45,9 @@ router.get("/mark-met", isAuthenticated, async (req, res) => {
 
 
 
-router.get("/members-met", isAuthenticated, connectionController.getMetMembers);
+router.get("/members-met", ensureAuthenticated, connectionController.getMetMembers);
 router.get(
   "/recommendations",
-  isAuthenticated,
   userController.getRecommendedUsers
 );
 
