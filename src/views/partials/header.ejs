@@ -1,26 +1,38 @@
+<!-- Styles for the header -->
 <link rel="stylesheet" href="/css/header.css" />
+
+<!-- External font styles -->
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Roboto:wght@400;500&display=swap" rel="stylesheet"> 
+
 <header>
   <nav class="navbar">
+    <!-- Logo and site name linking to the homepage -->
     <a href="/">
       <div class="logo">
         <img src="/icon.png" alt="CauseConnect Logo" />
         <h1>CauseConnect</h1>
       </div>
     </a>
-      <div class="menu">
-        <button class="menu-toggle">☰</button>
-        <div class="dropdown-menu">
-          <a href="/user/profile">Profile</a>
-          <a href="/user/preferences">Preferences</a>
-            <a href="/logout">Log out</a>
-        </div>
+    
+    <!-- User menu -->
+    <div class="menu">
+      <!-- Menu toggle button -->
+      <button class="menu-toggle">☰</button>
+      
+      <!-- Dropdown menu items -->
+      <div class="dropdown-menu">
+        <a href="/user/profile">Profile</a>
+        <a href="/user/preferences">Preferences</a>
+        <a href="/logout">Log out</a>
+      </div>
     </div>
   </nav>
 </header>
+
+<!-- Script to toggle the dropdown menu -->
 <script>
   document.querySelector('.menu-toggle').addEventListener('click', function() {
-      const dropdown = document.querySelector('.dropdown-menu');
-      dropdown.style.display = dropdown.style.display === 'none' || dropdown.style.display === '' ? 'block' : 'none';
+    const dropdown = document.querySelector('.dropdown-menu');
+    dropdown.style.display = dropdown.style.display === 'none' || dropdown.style.display === '' ? 'block' : 'none';
   });
 </script>

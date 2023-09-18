@@ -13,7 +13,7 @@ mongoose.connect('mongodb://localhost/CauseConnect', {
 })
 .then(() => {
     console.log('Connected to MongoDB');
-    return User.deleteMany({ username: { $ne: 'admin2' } });
+    return mongoose.connection.dropDatabase();
 })
 .then(() => {
     console.log('Deleted all users except for admin.');
