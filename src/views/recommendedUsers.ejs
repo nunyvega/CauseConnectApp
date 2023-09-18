@@ -1,94 +1,117 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+    <!-- Meta tags -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Title -->
     <title>Recommended Users</title>
+
+    <!-- Stylesheets -->
     <link rel="stylesheet" href="/css/styles.css" />
     <link rel="stylesheet" href="/css/recommendedUsers.css" />
 </head>
+
 <body class="with-background">
-<%- include('partials/header') %>
-<h1 class="page-title page-title-no-background">Recommended Users to Meet</h1>
-<!-- Explanation about the similarity score -->
-<div class="similarity-explanation">
-    <h2>How does the Similarity Score work?</h2>
-    <p>
-        Our algorithm analyzes users' interests, roles, skills, and languages spoken to calculate a similarity score. This score represents how much in common you have with another user. A higher score means you share more common interests, skills, and other attributes.
-    </p>
-</div>
-<div class="cards">
-    <% users.forEach(user => { %>
-    <div class="user-card">
-        <img class="profile-pic" src="<%= user.profilePicture %>" alt="User's Profile Picture" />
-        <div class="name-section">
-            <h2 class="name"><%= user.name %></h2>
-            <p class="username">@<%= user.username %></p>
+    <!-- Header -->
+    <%- include('partials/header') %>
 
-         </div>
-        <div class="similarity-score">
-            <label for="similarity">Similarity: <%= user.similarityScore.toFixed(2) %> %</label>
-            <meter id="similarity" value="<%= user.similarityScore %>" min="0" max="100"></meter>
-        </div>
-        <div class="detail-section interests">
-        Interests: 
-          <span class="detail-count" onclick="toggleDetails(this)"> <%= user.interests.length %> </span>
-          <div class="detail-list">
-              <% user.interests.forEach((interest, index) => { %>
-                  <%= interest %><%= index !== user.interests.length - 1 ? ',' : '' %>
-              <% }); %>
-          </div>
-      </div>
-      
-      <div class="detail-section roles">
-          Roles: 
-          <span class="detail-count" onclick="toggleDetails(this)"> <%= user.roles.length %> </span>
-          <div class="detail-list">
-              <% user.roles.forEach((role, index) => { %>
-                  <%= role %><%= index !== user.roles.length - 1 ? ',' : '' %>
-              <% }); %>
-          </div>
-      </div>
-      
-      <div class="detail-section skills">
-          Skills: 
-          <span class="detail-count" onclick="toggleDetails(this)"> <%= user.skills.length %> </span>
-          <div class="detail-list">
-              <% user.skills.forEach((skill, index) => { %>
-                  <%= skill %><%= index !== user.skills.length - 1 ? ',' : '' %>
-              <% }); %>
-          </div>
-      </div>
-      
+    <!-- Page Title -->
+    <h1 class="page-title page-title-no-background">Recommended Users to Meet</h1>
 
-        <p class="languages">
-            Languages Spoken:
-              <div class="language-flags">
-                <% user.languagesSpoken.forEach((language) => { %>
-                  <% console.log(language) %>
-                  <div class="language-flag">
-                    <%= languageToFlag[language] %>
-                  </div>
-                <% }); %>
-            </div>
+    <!-- Explanation about the similarity score -->
+    <div class="similarity-explanation">
+        <h2>How does the Similarity Score work?</h2>
+        <p>
+            Our algorithm analyzes users' interests, roles, skills, and languages spoken to calculate a similarity score. This score represents how much in common you have with another user. A higher score means you share more common interests, skills, and other attributes.
         </p>
-        <a href="/user/<%= user.username %>" class="profile-button button">View Profile</a>
-
     </div>
-    <% }); %>
-</div>
+
+    <!-- User Cards -->
+    <div class="cards">
+        <% users.forEach(user => { %>
+        <div class="user-card">
+            <!-- User Image -->
+            <img class="profile-pic" src="<%= user.profilePicture %>" alt="<%= user.name %>'s Profile Picture" />
+
+            <!-- User Name and Username -->
+            <div class="name-section">
+                <h2 class="name"><%= user.name %></h2>
+                <p class="username">@<%= user.username %></p>
+            </div>
+
+            <!-- Similarity Score -->
+            <div class="similarity-score">
+                <label for="similarity">Similarity: <%= user.similarityScore.toFixed(2) %> %</label>
+                <meter id="similarity" value="<%= user.similarityScore %>" min="0" max="100"></meter>
+            </div>
+
+            <!-- Interests -->
+            <div class="detail-section interests">
+                Interests: 
+                <span class="detail-count" onclick="toggleDetails(this)"> <%= user.interests.length %> </span>
+                <div class="detail-list">
+                    <% user.interests.forEach((interest, index) => { %>
+                        <%= interest %><%= index !== user.interests.length - 1 ? ', ' : '' %>
+                    <% }); %>
+                </div>
+            </div>
+
+            <!-- Roles -->
+            <div class="detail-section roles">
+                Roles: 
+                <span class="detail-count" onclick="toggleDetails(this)"> <%= user.roles.length %> </span>
+                <div class="detail-list">
+                    <% user.roles.forEach((role, index) => { %>
+                        <%= role %><%= index !== user.roles.length - 1 ? ', ' : '' %>
+                    <% }); %>
+                </div>
+            </div>
+
+            <!-- Skills -->
+            <div class="detail-section skills">
+                Skills: 
+                <span class="detail-count" onclick="toggleDetails(this)"> <%= user.skills.length %> </span>
+                <div class="detail-list">
+                    <% user.skills.forEach((skill, index) => { %>
+                        <%= skill %><%= index !== user.skills.length - 1 ? ', ' : '' %>
+                    <% }); %>
+                </div>
+            </div>
+
+            <!-- Languages Spoken -->
+            <div class="languages">
+                Languages Spoken:
+                <div class="language-flags">
+                    <% user.languagesSpoken.forEach((language) => { %>
+                        <div class="language-flag">
+                            <%= languageToFlag[language] %>
+                        </div>
+                    <% }); %>
+                </div>
+            </div>
+
+            <!-- View Profile Button -->
+            <div class="view-profile">
+                <a href="/user/<%= user.username %>" class="profile-button button">View Profile</a>
+            </div>
+        </div>
+        <% }); %>
+    </div>
+
+    <!-- Toggle Details Script -->
+    <script>
+        function toggleDetails(element) {
+            const detailList = element.nextElementSibling;
+            if (detailList.style.display === "none" || detailList.style.display === "") {
+                detailList.style.display = "block";
+            } else {
+                detailList.style.display = "none";
+            }
+        }
+    </script>
 </body>
-<script>
-  function toggleDetails(element) {
-    console.log('clicked')
-    console.log(element)
-      const detailList = element.nextElementSibling;
-      console.log(detailList)
-      if (detailList.style.display === "none" || detailList.style.display === "") {
-          detailList.style.display = "block";
-      } else {
-          detailList.style.display = "none";
-      }
-  }
-</script>
+
 </html>

@@ -1,54 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>All Users</title>
     <link rel="stylesheet" href="/css/styles.css" />
     <link rel="stylesheet" href="/css/allMembers.css" />
-  </head>
-  <body class="with-background">
+</head>
+<body class="with-background">
+    <!-- Include the header partial -->
     <%- include('partials/header') %>
+
+    <!-- Page title -->
     <h1 class="page-title page-title-no-background">All Users</h1>
-<!-- Navigation Tabs -->
-<div class="alphabet-nav">
-  <% for (let letter in groupedUsers) { %>
-    <a href="#<%= letter %>"><%= letter %></a>
-  <% } %>
-</div>
 
-<!-- Display Users by Section -->
-<ul>
-  <% for (let letter in groupedUsers) { %>
-    <li class="section" id="<%= letter %>">
-      <h2 class="section-title"><%= letter %></h2>
-      <ul class="group">
-        <% groupedUsers[letter].forEach(user => { %>
-          <% if(String(user._id) !== String(currentUser._id)) { %>
-            <li class="card">
-              <div class="userInfo">
-                <img src="<%= user.profilePicture %>" class="userImage" alt="User's Profile Picture" />
-                <a class="name" href="/user/<%= user.username %>"><%= user.name %></a>
-              </div>
-              <% if (user.met) { %>
-              <form action="/markUnmet" method="post">
-                <input type="hidden" name="userId" value="<%= user._id %>" />
-                <button class="met-unmet" type="submit">Mark as Unmet</button>
-              </form>
-              <% } else { %>
-              <form action="/markMet" method="post">
-                <input type="hidden" name="userId" value="<%= user._id %>" />
-                <button class="met-unmet" type="submit">Mark as Met</button>
-              </form>
-              <% } %>
+    <!-- Alphabetical navigation tabs -->
+    <div class="alphabet-nav">
+        <% for (let letter in groupedUsers) { %>
+            <a href="#<%= letter %>"><%= letter %></a>
+        <% } %>
+    </div>
+
+    <!-- Display users grouped by the first letter of their name -->
+    <ul>
+        <% for (let letter in groupedUsers) { %>
+            <li class="section" id="<%= letter %>">
+                <h2 class="section-title"><%= letter %></h2>
+                <ul class="group">
+                    <% groupedUsers[letter].forEach(user => { %>
+                        <!-- Exclude the current user from the list -->
+                        <% if(String(user._id) !== String(currentUser._id)) { %>
+                            <li class="card">
+                                <div class="userInfo">
+                                    <img src="<%= user.profilePicture %>" class="userImage" alt="User's Profile Picture" />
+                                    <a class="name" href="/user/<%= user.username %>"><%= user.name %></a>
+                                </div>
+                                <!-- Provide options to mark a user as met or unmet -->
+                                <% if (user.met) { %>
+                                    <form action="/markUnmet" method="post">
+                                        <input type="hidden" name="userId" value="<%= user._id %>" />
+                                        <button class="met-unmet" type="submit">Mark as Unmet</button>
+                                    </form>
+                                <% } else { %>
+                                    <form action="/markMet" method="post">
+                                        <input type="hidden" name="userId" value="<%= user._id %>" />
+                                        <button class="met-unmet" type="submit">Mark as Met</button>
+                                    </form>
+                                <% } %>
+                            </li>
+                        <% } %>
+                    <% }) %>
+                </ul>
             </li>
-          <% } %>
-        <% }) %>
-      </ul>
-    </li>
-  <% } %>
-</ul>
-
-
-  </body>
+        <% } %>
+    </ul>
+</body>
 </html>

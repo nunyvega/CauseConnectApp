@@ -6,9 +6,13 @@ const User = require("../models/User");
 const Connection = require("../models/Connection");
 const ensureAuthenticated = require("../middleware/authMiddleware");
 
+// Mark a user as met
 router.post("/markMet", ensureAuthenticated, connectionController.markMet);
+
+// Mark a user as unmet
 router.post("/markUnmet", ensureAuthenticated, connectionController.markUnmet);
 
+// Retrieve and group users by the first letter of their name
 router.get("/mark-met", ensureAuthenticated, async (req, res) => {
   try {
     const users = await User.find().sort({name: 1});
@@ -43,12 +47,10 @@ router.get("/mark-met", ensureAuthenticated, async (req, res) => {
   }
 });
 
-
-
+// Retrieve members that the current user has met
 router.get("/members-met", ensureAuthenticated, connectionController.getMetMembers);
-router.get(
-  "/recommendations",
-  userController.getRecommendedUsers
-);
+
+// Retrieve recommended users for the current user
+router.get("/recommendations", userController.getRecommendedUsers);
 
 module.exports = router;

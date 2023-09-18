@@ -1,3 +1,4 @@
+/* Global Styles */
 body {
   font-family: 'Open Sans', sans-serif;
   margin: 0;
@@ -8,6 +9,18 @@ body {
 p, h1, h2, h3, .button {
   font-family: 'Roboto', sans-serif;
 }
+
+a {
+  text-decoration: none;
+  color: #b3c96b;
+  font-weight: bold;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Login Container Styles */
 .login-container {
   width: 300px;
   margin: 50px auto;
@@ -19,6 +32,7 @@ p, h1, h2, h3, .button {
   border-radius: 20px;
 }
 
+/* Alert Messages */
 .alert.alert-success {
   color: #155724;
   background-color: #d4edda;
@@ -34,6 +48,7 @@ p, h1, h2, h3, .button {
   margin: 10px 0;
 }
 
+/* Form Styles */
 .form-group {
   margin: 10px;
 }
@@ -52,48 +67,36 @@ input[type="password"] {
 }
 
 button[type="submit"],
-.button:hover {
+.button {
   padding: 10px 20px;
   border: none;
   border-radius: 5px;
   color: #ffffff;
   cursor: pointer;
-  background-color: #ccd5ae;
-  transition: background-color 0.3s;
+  background-color: #b3c96b;
+  transition: background-color 0.3s, transform 0.3s;
 }
 
 button[type="submit"]:hover,
 .button:hover {
-  background-color: #b3c96b;
+  background-color: #a7cb30;
+  transform: scale(1.05);
 }
 
-a {
-  text-decoration: none;
-  color: #b3c96b;
-  font-weight: bold;
-}
-
-a:hover {
-  text-decoration: underline;
-}
-
-body {
-  font-family: "Arial", sans-serif;
-  margin: 0;
-  padding: 0;
-  background-color: #f5f5f5;
-}
+/* User Info Styles */
 h1 {
   text-align: center;
   color: #333;
   margin: 40px 0;
 }
+
 ul {
   list-style: none;
   padding: 20px;
   max-width: 600px;
   margin: 0 auto;
 }
+
 li {
   border: 1px solid #ddd;
   padding: 15px;
@@ -105,41 +108,25 @@ li {
   align-items: center;
   border-radius: 5px;
 }
+
 img {
   width: 50px;
   height: 50px;
   border-radius: 50%;
   margin-right: 15px;
 }
+
 .userInfo {
   display: flex;
   align-items: center;
 }
-.username {
+
+.username, .name {
   color: #444;
-}
-.name {
   margin-left: 5px;
 }
-button,
-.button {
-  padding: 7px 15px;
-  border: none;
-  border-radius: 5px;
-  color: #ffffff;
-  cursor: pointer;
-  transition: transform 0.3s;
-}
-button[type="submit"],
-.button {
-  background-color: #b3c96b;
-}
-button[type="submit"]:hover,
-.button:hover {
-  background-color: #a7cb30;
-  transform: scale(1.05);
-}
 
+/* Background Image Styles */
 .with-background {
   background-image: url("/bg.jpg");
   background-size: cover;
@@ -154,8 +141,8 @@ button[type="submit"]:hover,
   font-size: x-small;
   position: fixed;
   color: rgba(255, 255, 255, 0.6);
-  padding:10px;
-  bottom:0;
+  padding: 10px;
+  bottom: 0;
 }
 
 .content-with-background {
@@ -177,10 +164,11 @@ button[type="submit"]:hover,
   margin: auto auto 15px auto;
 }
 
-.create-users p{
-  text-align:left
+.create-users p {
+  text-align: left;
 }
-code{
+
+code {
   font-size: large;
   background-color: #f2ffc7;
 }

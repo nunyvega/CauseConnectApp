@@ -1,51 +1,60 @@
+/* User profile image styling */
 .userImage {
   width: 60px;
   height: 60px;
-  border-radius: 50%;
+  border-radius: 50%; /* Makes the image circular */
   margin-right: 15px;
 }
+
+/* Flex container for user information */
 .userInfo {
   display: flex;
   align-items: center;
 }
 
+/* Styling for the user's name */
 .name {
   margin-left: 5px;
   color: black;
   font-weight: bold;
 }
 
+/* Card styling for each user */
 .card {
   margin-bottom: 3px;
   padding: 8px;
   border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Adds a subtle shadow */
 }
 
+/* Navigation bar for alphabets */
 .alphabet-nav {
   background-color: #f0f0f0;
   display: flex;
   justify-content: center;
   margin: 0 10%;
-  width:80%;
+  width: 80%;
   border-radius: 20px;
-  flex-wrap: wrap; /* To wrap content if there are many letters */
+  flex-wrap: wrap; /* Allows the content to wrap if there are many letters */
 }
 
+/* Styling for each alphabet link in the navigation bar */
 .alphabet-nav a {
   margin: 5px 10px;
   padding: 5px 8px;
   text-decoration: none;
   color: black;
   border: 1px solid black;
-  border-radius: 50%; /* Makes it circular */
+  border-radius: 50%;
   transition: background-color 0.3s;
 }
 
+/* Hover effect for alphabet links */
 .alphabet-nav a:hover {
   background-color: #f0f0f0;
 }
 
+/* Styling for section titles */
 .section-title {
   margin: 5px 10px;
   padding: 5px 8px;
@@ -53,21 +62,25 @@
   color: black;
   background-color: #f0f0f0;
   border: 1px solid black;
-  border-radius: 50%; /* Makes it circular */
+  border-radius: 50%;
   transition: background-color 0.3s;
 }
 
+/* Styling for each section */
 .section {
-  padding: 0px;
+  padding: 0;
   background-color: transparent;
-  border: transparent
+  border: transparent;
 }
 
-.group{
+/* Group styling */
+.group {
   margin: 0;
-padding:0;
-width:90%;}
+  padding: 0;
+  width: 90%;
+}
 
-button.met-unmet{
+/* Button styling for marking users as met/unmet */
+button.met-unmet {
   min-width: 140px;
 }

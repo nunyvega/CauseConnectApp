@@ -1,3 +1,4 @@
+// Mapping of languages to their corresponding flag emojis
 const languageToFlag = {
     'English': '🇬🇧',
     'Spanish': '🇪🇸',

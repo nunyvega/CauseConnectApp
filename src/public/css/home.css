@@ -1,7 +1,10 @@
+/* Main content styles */
 .main-section {
   text-align: center;
   margin: 50px;
 }
+
+/* Percentage circle styles */
 .percentage-circle-container {
   border-radius: 50%;
   display: flex;
@@ -16,12 +19,31 @@
   width: 210px;
   height: 210px;
 }
+
+.percentage-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 48px;
+  color: #b3c96b;
+  font-weight: 800;
+}
+
+.progress-ring__circle {
+  transition: stroke-dashoffset 0.35s;
+  transform: rotate(-90deg);
+  transform-origin: 50% 50%;
+}
+
+/* Call to action buttons styles */
 .cta-buttons {
   display: flex;
   flex-direction: column;
   align-items: center;
   margin: 20px;
 }
+
 .cta-button,
 .cta-button:hover {
   background-color: #b3c96b;
@@ -33,66 +55,50 @@
   font-weight: bold;
   transition: background-color 0.3s;
 }
+
 .cta-button:hover {
   background-color: #a7cb30;
 }
 
-
-
-.percentage-text {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 36px;
-  color: #ccd5ae;
-}
-
-.progress-ring__circle {
-  transition: stroke-dashoffset 0.35s;
-  transform: rotate(-90deg);
-  transform-origin: 50% 50%;
-  
-}
-
+/* Members met section styles */
 .members-met {
-  background-color: #B7C48C; /* A soft gray background */
-  border-radius: 8px; /* Rounded corners */
-  padding: 20px; /* Spacing inside the container */
-  margin-top: 20px; /* Space above the container */
-  font-size: 1.2em; /* Slightly larger text */
-  text-align: center; /* Centered text */
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Slight shadow for depth */
-  max-width: 300px; /* Limit the width */
-  margin-left: auto; /* Center align */
-  margin-right: auto; /* Center align */
+  background-color: #B7C48C;
+  border-radius: 8px;
+  padding: 20px;
+  margin-top: 20px;
+  font-size: 1.2em;
+  text-align: center;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  max-width: 300px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .members-met p {
-  margin: 0; /* Remove default margin from the paragraph for better control */
-  color: #fff ;
-  font-weight: bold
-  ; /* Dark gray text color */
+  margin: 0;
+  color: #fff;
+  font-weight: bold;
 }
 
+/* Statistic section styles */
 .statistic {
-  background-color: rgba(255, 255, 255, 0.95); /* Slightly transparent white background */
-  border-radius: 8px; /* Rounded corners */
-  padding: 15px; /* Spacing inside the container */
-  margin: 20px auto; /* Space above and below the container, and centering it horizontally */
-  font-size: 1.2em; /* Slightly larger text */
-  text-align: center; /* Centered text */
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); /* Slight shadow for depth */
-  max-width: 500px; /* Limit the width */
+  background-color: rgba(255, 255, 255, 0.95);
+  border-radius: 8px;
+  padding: 15px;
+  margin: 20px auto;
+  font-size: 1.2em;
+  text-align: center;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  max-width: 500px;
   position: relative;
 }
 
 .statistic p {
-  margin: 0; /* Remove default margin from the paragraph for better control */
-  color: #555; /* Dark gray text color */
+  margin: 0;
+  color: #555;
 }
 
 .statistic p strong {
-  color: #b3c96b; /* Matching the color scheme */
-  font-weight: bold; /* Bold text for emphasis */
+  color: #b3c96b;
+  font-weight: bold;
 }

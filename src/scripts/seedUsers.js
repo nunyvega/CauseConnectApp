@@ -7,6 +7,7 @@ const bcrypt = require('bcrypt');
 // Use the same password for every user to test the app faster
 const hashedPass = bcrypt.hashSync('admin', 10);
 
+// Connect to MongoDB and seed data
 mongoose.connect('mongodb://localhost/CauseConnect', {
     useNewUrlParser: true,
     useUnifiedTopology: true
@@ -25,6 +26,9 @@ mongoose.connect('mongodb://localhost/CauseConnect', {
     mongoose.connection.close();
 });
 
+/**
+ * Generate random items for user attributes
+ */
 function generateRandomItems(path, min, max) {
     let itemsCount = faker.datatype.number({ min: min, max: max });
     let items = [];
@@ -35,6 +39,9 @@ function generateRandomItems(path, min, max) {
     return items;
 }
 
+/**
+ * Generate user data and save to the database
+ */
 function generateUsers(numberOfUsers) {
     const users = [];
 
@@ -61,16 +68,17 @@ function generateUsers(numberOfUsers) {
             },
             personalBlogOrWebsite: faker.internet.url(),
             socialMedia: {
-                facebook: 'facebook.com/' + username,
-                twitter: 'twitter.com/' + username,
-                instagram: 'instagram.com/' + username,
-                linkedin: 'linkedin.com/' + username,
-                youtube: 'youtube.com/' + username,
+                facebook: 'https://facebook.com/' + username,
+                twitter: 'https://twitter.com/' + username,
+                instagram: 'https://instagram.com/' + username,
+                linkedin: 'https://linkedin.com/' + username,
+                youtube: 'https://youtube.com/' + username,
                 website: faker.internet.url(),
             }
         }));
     }
 
+    // Add an admin user
     users.push(new User({
         username: 'admin',
         password: hashedPass,
@@ -91,11 +99,11 @@ function generateUsers(numberOfUsers) {
         },
         personalBlogOrWebsite: faker.internet.url(),
         socialMedia: {
-            facebook: 'facebook.com/admin',
-            twitter: 'twitter.com/admin',
-            instagram: 'instagram.com/admin',
-            linkedin: 'linkedin.com/admin',
-            youtube: 'youtube.com/admin',
+            facebook: 'https://facebook.com/admin',
+            twitter: 'https://twitter.com/admin',
+            instagram: 'https://instagram.com/admin',
+            linkedin: 'https://linkedin.com/admin',
+            youtube: 'https://youtube.com/admin',
             website: faker.internet.url(),
         }
     }));
@@ -105,12 +113,18 @@ function generateUsers(numberOfUsers) {
     });
 }
 
+/**
+ * Generate connections for the admin user
+ */
 function generateConnectionsForAdmin() {
     return User.findOne({ username: 'admin' }).then(adminUser => {
         return createConnectionsUsingAdminId(adminUser._id);
     });
 }
 
+/**
+ * Create connections using the admin user's ID
+ */
 function createConnectionsUsingAdminId(adminId) {
     return User.aggregate([
         { $match: { _id: { $ne: adminId } } },

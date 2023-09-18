@@ -1,21 +1,21 @@
+/* Container for user cards */
 .cards {
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
   justify-content: center;
-  margin: 25px 0; /* Add top and bottom margin to cards container */
+  margin: 25px 0;
 }
 
+/* Individual user card styles */
 .user-card {
+  background-color: #ffffff;
   border: 1px solid #e0e0e0;
   border-radius: 10px;
-  padding: 1rem;
+  padding: 10px 25px;
   width: 200px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  background-color: #ffffff;
-  margin: 20px; /* Remove the margin */
-  padding: 10px 25px;
-  transition: transform 0.3s; /* Smooth animation for hover effect */
+  transition: transform 0.3s;
 }
 
 .user-card:hover {
@@ -23,16 +23,17 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+/* Profile picture styles */
 .profile-pic {
   width: 200px;
   height: 200px;
   border-radius: 50%;
   display: block;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 0 auto;
 }
 
-.name {
+/* User name and username styles */
+.name, .username {
   text-align: center;
   margin: 1rem 0;
 }
@@ -40,12 +41,14 @@
 .username {
   font-size: 14px;
   font-weight: 800;
-  text-align: center;
 }
 
+/* Container for user name */
 .name-section {
   min-height: 100px;
 }
+
+/* Similarity score styles */
 .similarity-score {
   display: flex;
   align-items: center;
@@ -54,7 +57,7 @@
 
 meter {
   width: 100%;
-  height: 15px;
+  height: 50px;
   border-radius: 7.5px;
 }
 
@@ -67,6 +70,7 @@ meter::-webkit-meter-optimum-value {
   background: #b3c96b;
 }
 
+/* Language flags styles */
 .language-flags {
   display: flex;
   gap: 5px;
@@ -76,6 +80,7 @@ meter::-webkit-meter-optimum-value {
   font-size: 35px;
 }
 
+/* Details section styles */
 .detail-count {
   cursor: pointer;
   text-decoration: underline;
@@ -83,11 +88,11 @@ meter::-webkit-meter-optimum-value {
 
 .detail-list {
   display: none;
-  background-color: #f8f8f8; /* light grey background */
+  background-color: #f8f8f8;
   border-radius: 5px;
   padding: 10px;
-  margin-top: 5px; /* A little spacing from the title */
-  border: 1px solid #e0e0e0; /* A subtle border */
+  margin-top: 5px;
+  border: 1px solid #e0e0e0;
 }
 
 .expanded .detail-list {
@@ -95,30 +100,11 @@ meter::-webkit-meter-optimum-value {
 }
 
 .detail-section {
-  margin: 1rem 0; /* Add some spacing between detail sections */
+  margin: 1rem 0;
   color: #777;
 }
 
-h1 {
-  text-align: center;
-  color: #fff;
-  margin: 40px 0;
-}
-
-.profile-button {
-  display: block;
-  padding: 10px 20px;
-  margin-top: 10px;
-  text-align: center;
-  color: #fff;
-  text-decoration: none;
-  border-radius: 4px;
-  transition: background-color 0.3s ease;
-}
-.profile-button:hover {
-  background-color: #b3c96b;
-}
-
+/* Explanation for similarity score */
 .similarity-explanation {
   background-color: rgba(255, 255, 255, 0.8);
   border-radius: 15px;
@@ -137,4 +123,15 @@ h1 {
 
 .similarity-explanation p {
   color: #666;
+}
+
+/* Profile button link styles */
+.view-profile{
+display:flex;
+
+}
+.profile-button {
+  width:100%;
+  text-align: center;
+  margin: 10px;
 }

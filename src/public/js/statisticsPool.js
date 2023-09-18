@@ -11,7 +11,7 @@ let statisticsPool = [
     { message: "Engagement rates spike up by 40% during community challenges and contests." },
 ];
 
-
+// Get a random message from the pool
 let randomIndex = Math.floor(Math.random() * statisticsPool.length);
 let statisticToShow = statisticsPool[randomIndex];
 

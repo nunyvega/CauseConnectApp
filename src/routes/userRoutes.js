@@ -1,14 +1,12 @@
 const express = require("express");
 const userController = require("../controllers/userController");
-const multer = require("multer");
-const path = require("path");
 const upload = require("../multerConfig");
 const router = express.Router();
 const User = require("../models/User");
 const languageToFlag = require("../public/js/languageToFlag");
 const ensureAuthenticated = require("../middleware/authMiddleware");
 
-
+// Update user preferences with potential profile picture upload
 router.post(
   "/preferences",
   ensureAuthenticated,
@@ -16,8 +14,10 @@ router.post(
   userController.updateUserPreferences
 );
 
+// Render the user preferences page
 router.get("/preferences", ensureAuthenticated, userController.renderPreferencesPage);
 
+// Render the profile of the currently logged-in user
 router.get('/profile', ensureAuthenticated, async (req, res) => {
   try {
     const user = await User.findOne({ username: req.user.username });
@@ -35,6 +35,7 @@ router.get('/profile', ensureAuthenticated, async (req, res) => {
   }
 });
 
+// Render the profile of a user specified by username
 router.get('/:username', ensureAuthenticated, async (req, res) => {
   try {
     const user = await User.findOne({ username: req.params.username });
@@ -51,7 +52,5 @@ router.get('/:username', ensureAuthenticated, async (req, res) => {
     res.status(500).send('Server error'); 
   }
 });
-
-
 
 module.exports = router;

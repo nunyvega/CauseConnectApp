@@ -5,28 +5,34 @@ const router = express.Router();
 const ensureAuthenticated = require("../middleware/authMiddleware");
 
 // API endpoints
-// Get all users
+
+// Route to get all users
 router.get('/users', ensureAuthenticated, async (req, res) => {
     try {
-       const users = await User.find().select('-password');  // Excludes password field for security reasons
-       res.json(users);
+        // Fetch all users from the database and exclude the password field for security reasons
+        const users = await User.find().select('-password');
+        res.json(users);
     } catch (error) {
-       res.status(500).send('Internal Server Error');
+        // Handle any internal server errors
+        res.status(500).send('Internal Server Error');
     }
-  });
-  
-  // Get a single user by username
-  router.get('/users/:username', ensureAuthenticated, async (req, res) => {
+});
+
+// Route to get a single user by their username
+router.get('/users/:username', ensureAuthenticated, async (req, res) => {
     try {
-       const user = await User.findOne({ username: req.params.username }).select('-password'); // Excludes password field for security reasons
-       if (user) {
-          res.json(user);
-       } else {
-          res.status(404).send('User not found');
-       }
+        // Fetch the user by username and exclude the password field for security reasons
+        const user = await User.findOne({ username: req.params.username }).select('-password');
+        
+        if (user) {
+            res.json(user);
+        } else {
+            res.status(404).send('User not found');
+        }
     } catch (error) {
-       res.status(500).send('Internal Server Error');
+        // Handle any internal server errors
+        res.status(500).send('Internal Server Error');
     }
-  });
+});
 
 module.exports = router;
