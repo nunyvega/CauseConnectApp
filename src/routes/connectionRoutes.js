@@ -35,6 +35,8 @@ router.get("/mark-met", isAuthenticated, async (req, res) => {
 
     // Group the users by the first letter of their name
     const groupedUsers = users.reduce((acc, user) => {
+      // confirm that there are users
+      if (!user.name) return acc;
       const firstLetter = user.name[0].toUpperCase();
       if (!acc[firstLetter]) acc[firstLetter] = [];
       acc[firstLetter].push(user);

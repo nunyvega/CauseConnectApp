@@ -18,7 +18,29 @@
         <div class="user-card">
             <img class="profile-pic" src="<%= user.profilePicture %>" alt="<%= user.name %>'s Profile Picture" />
             <h2 class="username"><%= user.name %></h2>
-
+<!-- Social Media Links -->
+<div class="social-media-section">
+    <div class="social-media-icons">
+        <% if(user.socialMedia.facebook) { %>
+            <a href="<%= user.socialMedia.facebook %>" target="_blank"><i class="fab fa-facebook-f"></i></a>
+        <% } %>
+        <% if(user.socialMedia.twitter) { %>
+            <a href="<%= user.socialMedia.twitter %>" target="_blank"><i class="fab fa-twitter"></i></a>
+        <% } %>
+        <% if(user.socialMedia.instagram) { %>
+            <a href="<%= user.socialMedia.instagram %>" target="_blank"><i class="fab fa-instagram"></i></a>
+        <% } %>
+        <% if(user.socialMedia.linkedin) { %>
+            <a href="<%= user.socialMedia.linkedin %>" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+        <% } %>
+        <% if(user.socialMedia.github) { %>
+            <a href="<%= user.socialMedia.github %>" target="_blank"><i class="fab fa-github"></i></a>
+        <% } %>
+        <% if(user.socialMedia.website) { %>
+            <a href="<%= user.socialMedia.website %>" target="_blank"><i class="fas fa-globe"></i></a>
+        <% } %>
+    </div>
+</div>   
             <!-- Edit Profile Link -->
 <% if(currentUser && currentUser == user.username) { %>
     <div class="edit-profile">
@@ -77,34 +99,7 @@
                 <h3>Contact Information</h3>
                 <p>Email: <a href="mailto:<%= user.contactMethods.email %>"><%= user.contactMethods.email %></a></p>
                 <p>Phone: <a href="tel:<%= user.contactMethods.phone %>"><%= user.contactMethods.phone %></a></p>
-            </div>
-
-            <!-- Social Media Links -->
-            <div class="social-media-section">
-                <h3>Connect</h3>
-                <div class="social-media-icons">
-                    <% if(user.socialMedia.facebook) { %>
-                        <a href="<%= user.socialMedia.facebook %>" target="_blank"><i class="fab fa-facebook-f"></i></a>
-                    <% } %>
-                    <% if(user.socialMedia.twitter) { %>
-                        <a href="<%= user.socialMedia.twitter %>" target="_blank"><i class="fab fa-twitter"></i></a>
-                    <% } %>
-                    <% if(user.socialMedia.instagram) { %>
-                        <a href="<%= user.socialMedia.instagram %>" target="_blank"><i class="fab fa-instagram"></i></a>
-                    <% } %>
-                    <% if(user.socialMedia.linkedin) { %>
-                        <a href="<%= user.socialMedia.linkedin %>" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-                    <% } %>
-                    <% if(user.socialMedia.github) { %>
-                        <a href="<%= user.socialMedia.github %>" target="_blank"><i class="fab fa-github"></i></a>
-                    <% } %>
-                    <% if(user.socialMedia.website) { %>
-                        <a href="<%= user.socialMedia.website %>" target="_blank"><i class="fas fa-globe"></i></a>
-                    <% } %>
-                </div>
-            </div>            
-
-
+            </div>         
         </div>
     </div>
 

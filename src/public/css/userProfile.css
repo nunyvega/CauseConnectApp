@@ -64,7 +64,7 @@ body.with-background {
 
 .language-flag {
     margin-right: 10px;
-    font-size: 24px;
+    font-size: 36px;
 }
 
 .contact-section, .social-media-section {
@@ -125,7 +125,7 @@ a:hover {
 .edit-profile a {
     width:80%;
     text-align: center;
-    margin: 0 10%;
+    margin: 0 8%;
     display: inline-block;
     padding: 10px 15px;
     font-weight: 600;
@@ -134,9 +134,6 @@ a:hover {
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.edit-profile a:hover {
-    background-color: #ccd5ae;
-}
 
 
 /* This section is added for social media icons */
@@ -147,7 +144,7 @@ a:hover {
 }
 
 .social-media-icons a {
-    color: #8c8c8c;
+    color: #b3c96b;
     transition: color 0.3s ease;
     font-size: 36px;
     margin: 0 10px;
@@ -169,24 +166,15 @@ h3 {
     margin-top: 35px;
 }
 
-/* Bio Section */
-.bio {
-    margin: 15px 0;
-    font-style: italic;
-    padding: 10px;
-    border: 1px solid #e6e6e6;
-    border-radius: 4px;
-    background-color: #fafafa;
-}
 
 /* Edit Profile Button */
 .edit-profile a {
-    background-color: #0077cc;
+    background-color: #b3c96b;
     color: white;
     border: none;
 }
 
 .edit-profile a:hover {
-    background-color: #005fa3;
     color: white;
+    background-color: #a7cb30;
 }

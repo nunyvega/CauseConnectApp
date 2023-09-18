@@ -94,12 +94,15 @@ exports.getRecommendedUsers = async (req, res) => {
     currentUser.skills = currentUser.skills || [];
     currentUser.languagesSpoken = currentUser.languagesSpoken || [];
 
-    const MAX_SCORE =
+    let MAX_SCORE =
       currentUser.interests.length * WEIGHTS.interests +
       currentUser.roles.length * WEIGHTS.roles +
       currentUser.skills.length * WEIGHTS.skills +
       currentUser.languagesSpoken.length * WEIGHTS.languagesSpoken;
 
+    if (MAX_SCORE === 0) {
+      MAX_SCORE = 1;
+    }
     const connections = await Connection.find({
       $or: [{ user1: req.user._id }, { user2: req.user._id }],
     });

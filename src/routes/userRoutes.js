@@ -50,6 +50,7 @@ router.get('/:username', isAuthenticated, async (req, res) => {
       res.render('profile', { 
         user: user,
         currentUser: req.user.username,
+        languageToFlag: languageToFlag,
       });
     }
   } catch (error) {

@@ -16,7 +16,7 @@ mongoose.connect('mongodb://localhost/CauseConnect', {
     console.error('Failed to connect to MongoDB:', err);
 });
 
-User.deleteMany({ username: { $ne: 'admin2' } }).then(() => {
+User.deleteMany({ username: { $ne: 'romn' } }).then(() => {
     console.log('Deleted all users except for admin.');
 }).catch(err => {
     console.error('Failed to delete users:', err);

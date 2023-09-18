@@ -24,7 +24,7 @@
             <meter id="similarity" value="<%= user.similarityScore %>" min="0" max="100"></meter>
         </div>
         <div class="detail-section interests">
-          Shared Interests: 
+        Interests: 
           <span class="detail-count" onclick="toggleDetails(this)"> <%= user.interests.length %> </span>
           <div class="detail-list">
               <% user.interests.forEach((interest, index) => { %>
