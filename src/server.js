@@ -29,7 +29,6 @@ app.use(
 );
 
 app.use(flash());
-
 app.use((req, res, next) => {
   res.locals.error = req.flash("error");
   next();
@@ -136,6 +135,31 @@ app.get("/", ensureAuthenticated, async (req, res) => {
   });
 });
 
+// API endpoints
+// Get all users
+app.get('/api/users', async (req, res) => {
+  try {
+     const users = await User.find().select('-password');  // Excludes password field for security reasons
+     res.json(users);
+  } catch (error) {
+     res.status(500).send('Internal Server Error');
+  }
+});
+
+// Get a single user by username
+app.get('/api/users/:username', async (req, res) => {
+  try {
+     const user = await User.findOne({ username: req.params.username }).select('-password'); // Excludes password field for security reasons
+     if (user) {
+        res.json(user);
+     } else {
+        res.status(404).send('User not found');
+     }
+  } catch (error) {
+     res.status(500).send('Internal Server Error');
+  }
+});
+
 app.get("/logout", (req, res) => {
   req.session.destroy(function (err) {
     if (err) {
@@ -168,6 +192,13 @@ app.post('/run-seed', (req, res) => {
   });
 });
 
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).send('Something broke!');
+});
+
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
+
+
