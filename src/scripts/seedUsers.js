@@ -33,8 +33,12 @@ function generateRandomItems(path, min, max) {
     let itemsCount = faker.datatype.number({ min: min, max: max });
     let items = [];
 
-    for (let i = 0; i < itemsCount; i++) {
-        items.push(faker.random.arrayElement(User.schema.path(path).caster.enumValues));
+    while (items.length < itemsCount) {
+        const newItem = faker.random.arrayElement(User.schema.path(path).caster.enumValues);
+        // Make sure the item is not already in the array
+        if (!items.includes(newItem)) {
+            items.push(newItem);
+        }
     }
     return items;
 }

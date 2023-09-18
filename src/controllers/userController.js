@@ -90,10 +90,12 @@ exports.getRecommendedUsers = async (req, res) => {
         0
       ) || 1;
 
+    // Fetch existing connections of the current user
     const connections = await Connection.find({
       $or: [{ user1: req.user._id }, { user2: req.user._id }],
     });
 
+    // Extract IDs of users the current user has already met
     const metUserIds = connections.map(
       (conn) =>
         new ObjectId(
@@ -105,9 +107,11 @@ exports.getRecommendedUsers = async (req, res) => {
 
     // Recommendation pipeline
     const pipeline = [
+      // Exclude current user and users already met
       {
         $match: { _id: { $ne: currentUser._id, $nin: metUserIds } },
       },
+      // Ensure all fields are present, or set them to empty arrays
       {
         $project: {
           interests: { $ifNull: ["$interests", []] },
@@ -120,6 +124,7 @@ exports.getRecommendedUsers = async (req, res) => {
           age: 1,
         },
       },
+      // Calculate common interests, roles, skills, and languages with the current user
       {
         $addFields: {
           commonInterests: {
@@ -147,11 +152,13 @@ exports.getRecommendedUsers = async (req, res) => {
           },
         },
       },
+      // Add the MAX_SCORE constant to each document for later calculations
       {
         $addFields: {
           MAX_SCORE_CONSTANT: MAX_SCORE,
         },
       },
+      // Calculate the score for each user based on commonalities and weights
       {
         $addFields: {
           score: {
@@ -164,6 +171,7 @@ exports.getRecommendedUsers = async (req, res) => {
           },
         },
       },
+      // Convert the score to a percentage similarity score
       {
         $addFields: {
           similarityScore: {
@@ -181,11 +189,13 @@ exports.getRecommendedUsers = async (req, res) => {
           },
         },
       },
+      // Sort users by score in descending order
       {
         $sort: { score: -1 },
       },
     ];
 
+    // Execute the pipeline
     const users = await User.aggregate(pipeline);
     res.render("recommendedUsers", {
       users: users,

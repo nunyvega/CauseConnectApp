@@ -51,6 +51,6 @@ router.get("/mark-met", ensureAuthenticated, async (req, res) => {
 router.get("/members-met", ensureAuthenticated, connectionController.getMetMembers);
 
 // Retrieve recommended users for the current user
-router.get("/recommendations", userController.getRecommendedUsers);
+router.get("/recommendations", ensureAuthenticated, userController.getRecommendedUsers);
 
 module.exports = router;
