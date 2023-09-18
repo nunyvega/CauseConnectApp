@@ -112,6 +112,8 @@ const userRoutes = require("./routes/userRoutes");
 app.use("/user", userRoutes);
 const connectionRoutes = require("./routes/connectionRoutes");
 app.use(connectionRoutes);
+const apiRoutes = require("./routes/apiRoutes");
+app.use("/api", apiRoutes);
 
 app.get("/", ensureAuthenticated, async (req, res) => {
   const currentUserId = req.user._id;
@@ -133,31 +135,6 @@ app.get("/", ensureAuthenticated, async (req, res) => {
     metUsers: totalConnections, // This represents the number of users met
     statisticToShow: statisticToShow.message,
   });
-});
-
-// API endpoints
-// Get all users
-app.get('/api/users', async (req, res) => {
-  try {
-     const users = await User.find().select('-password');  // Excludes password field for security reasons
-     res.json(users);
-  } catch (error) {
-     res.status(500).send('Internal Server Error');
-  }
-});
-
-// Get a single user by username
-app.get('/api/users/:username', async (req, res) => {
-  try {
-     const user = await User.findOne({ username: req.params.username }).select('-password'); // Excludes password field for security reasons
-     if (user) {
-        res.json(user);
-     } else {
-        res.status(404).send('User not found');
-     }
-  } catch (error) {
-     res.status(500).send('Internal Server Error');
-  }
 });
 
 app.get("/logout", (req, res) => {
