@@ -171,3 +171,16 @@ button[type="submit"]:hover,
 .page-title-no-background {
   color: #fff;
 }
+
+.page-subtitle {
+  color: #b3c96b;
+  margin: auto auto 15px auto;
+}
+
+.create-users p{
+  text-align:left
+}
+code{
+  font-size: large;
+  background-color: #f2ffc7;
+}
