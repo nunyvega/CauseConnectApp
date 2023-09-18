@@ -74,3 +74,25 @@
   font-weight: bold
   ; /* Dark gray text color */
 }
+
+.statistic {
+  background-color: rgba(255, 255, 255, 0.95); /* Slightly transparent white background */
+  border-radius: 8px; /* Rounded corners */
+  padding: 15px; /* Spacing inside the container */
+  margin: 20px auto; /* Space above and below the container, and centering it horizontally */
+  font-size: 1.2em; /* Slightly larger text */
+  text-align: center; /* Centered text */
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); /* Slight shadow for depth */
+  max-width: 500px; /* Limit the width */
+  position: relative;
+}
+
+.statistic p {
+  margin: 0; /* Remove default margin from the paragraph for better control */
+  color: #555; /* Dark gray text color */
+}
+
+.statistic p strong {
+  color: #b3c96b; /* Matching the color scheme */
+  font-weight: bold; /* Bold text for emphasis */
+}

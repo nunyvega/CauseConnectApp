@@ -11,6 +11,7 @@ const flash = require("connect-flash");
 const Connection = require("./models/Connection");
 const ensureAuthenticated = require("./middleware/authMiddleware");
 const { spawn } = require('child_process');
+const statisticToShow = require('./public/js/statisticsPool');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -131,6 +132,7 @@ app.get("/", ensureAuthenticated, async (req, res) => {
     percentageMet: percentageMet,
     totalUsers: totalUsers,
     metUsers: totalConnections, // This represents the number of users met
+    statisticToShow: statisticToShow.message,
   });
 });
 

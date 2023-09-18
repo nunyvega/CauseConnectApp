@@ -10,6 +10,13 @@
 <body class="with-background">
 <%- include('partials/header') %>
 <h1 class="page-title page-title-no-background">Recommended Users to Meet</h1>
+<!-- Explanation about the similarity score -->
+<div class="similarity-explanation">
+    <h2>How does the Similarity Score work?</h2>
+    <p>
+        Our algorithm analyzes users' interests, roles, skills, and languages spoken to calculate a similarity score. This score represents how much in common you have with another user. A higher score means you share more common interests, skills, and other attributes.
+    </p>
+</div>
 <div class="cards">
     <% users.forEach(user => { %>
     <div class="user-card">
