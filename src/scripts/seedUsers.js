@@ -18,7 +18,7 @@ mongoose.connect(mongoUri, {
 })
 .then(() => {
     console.log('Connected to MongoDB');
-    return mongoose.connection.dropDatabase();
+    return clearCollections(); // Call function to clear Users and Connections
 })
 .then(() => {
     console.log('Deleted all users except for admin.');
@@ -30,6 +30,15 @@ mongoose.connect(mongoUri, {
     mongoose.connection.close();
 });
 
+// Clear User and Connection collections
+function clearCollections() {
+    return User.deleteMany({}).then(() => {
+        console.log('All documents in the User collection have been deleted.');
+        return Connection.deleteMany({});
+    }).then(() => {
+        console.log('All documents in the Connection collection have been deleted.');
+    });
+}
 /**
  * Generate random items for user attributes
  */
