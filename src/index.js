@@ -68,7 +68,7 @@ passport.deserializeUser(async (id, done) => {
 const mongoUri = process.env.MONGODB_URI;
 const mongoLocalUri = "mongodb://localhost/CauseConnect";
 
-mongoose.connect(mongoUri, {
+mongoose.connect(mongoLocalUri, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 })
