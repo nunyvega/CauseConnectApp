@@ -12,6 +12,9 @@ const Connection = require("./models/Connection");
 const ensureAuthenticated = require("./middleware/authMiddleware");
 const { spawn } = require('child_process');
 const statisticToShow = require('./public/js/statisticsPool');
+const crypto = require('crypto');
+const secret = crypto.randomBytes(64).toString('hex');
+
 require('dotenv').config();
 
 const app = express();
@@ -22,7 +25,7 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, "public")));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(session({
-    secret: "your-secret-key",
+    secret: secret,
     resave: false,
     saveUninitialized: false,
 }));
@@ -97,7 +100,13 @@ app.use(connectionRoutes);
 app.use("/api", apiRoutes);
 
 // Home route with statistics
-app.get("/", ensureAuthenticated, async (req, res) => {
+app.get("/", async (req, res) => {
+
+    // Redirect to login page if not authenticated
+    if( ! req.isAuthenticated() ) {
+        return res.redirect('/login');
+    }
+    
     const currentUserId = req.user._id;
     const totalUsers = await User.countDocuments({ _id: { $ne: currentUserId } });
     const totalConnections = await Connection.countDocuments({

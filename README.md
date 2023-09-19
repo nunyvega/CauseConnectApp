@@ -23,7 +23,7 @@ Follow these steps to run CauseConnect locally:
 
 1. **Clone the Repository:** 
    ```bash
-   git clone https://github.com/your-username/cause-connect.git
+   git clone https://github.com/nunyvega/CauseConnectApp.git
    ```
 
 2. **Navigate to the Directory:**
