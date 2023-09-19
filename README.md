@@ -8,6 +8,12 @@ CauseConnect is a web application designed to strengthen connections within memb
 - **Homepage:** Displays the members met and provides calls to action to meet more members, view met members, and update met members.
 - **User Profile:** Customize and manage personal preferences, hobbies, and greeting styles.
 - **Member Profiles:** View the social preferences and profiles of other members.
+- **User Preferences and Profile Management:** Users can update their preferences, upload a profile picture, and view their own profile as well as the profiles of other members.
+- **Connection Management:** Users can mark other members as met or unmet, view all members grouped by the first letter of their name, view members they have met, and get user connection recommendations.
+- **Authentication:** Secure user registration and login system.
+- **API Endpoints:** Retrieve all users or a specific user by their username.
+- **Homepage Statistics:** View statistics on user connections, such as the percentage of users met.
+- **Database Seeding:** Populate the database with user data using a seed script.
 
 ## Technology Used
 CauseConnect is built with the following technologies:
