@@ -1,6 +1,7 @@
 const express = require("express");
 const userController = require("../controllers/userController");
 const User = require("../models/User");
+const Connection = require("../models/Connection");
 const router = express.Router();
 const { ensureAuthenticated, ensureAdmin } = require("../middleware/authMiddleware");
 
@@ -68,6 +69,96 @@ router.delete('/users/:username', ensureAdmin, async (req, res) => {
             res.json({ message: 'User deleted successfully' });
         } else {
             res.status(404).send('User not found');
+        }
+    } catch (error) {
+        res.status(500).send('Internal Server Error');
+    }
+});
+
+// API endpoints for Connections
+
+// Route to create a new connection
+router.post('/connections', ensureAdmin, async (req, res) => {
+    try {
+        const newConnection = new Connection(req.body);
+        await newConnection.save();
+        res.status(201).json(newConnection);
+    } catch (error) {
+        res.status(500).send('Internal Server Error');
+    }
+});
+
+// Route to get all connections
+router.get('/connections', ensureAdmin, async (req, res) => {
+    try {
+        const connections = await Connection.find();
+        res.json(connections);
+    } catch (error) {
+        res.status(500).send('Internal Server Error');
+    }
+});
+
+// Route to get a specific connection by its ID
+router.get('/connections/:connectionId', ensureAdmin, async (req, res) => {
+    try {
+        const connection = await Connection.findById(req.params.connectionId);
+        if (connection) {
+            res.json(connection);
+        } else {
+            res.status(404).send('Connection not found');
+        }
+    } catch (error) {
+        res.status(500).send('Internal Server Error');
+    }
+});
+
+// Route to get all connections for a specific user by their username
+router.get('/connections/user/:username', ensureAdmin, async (req, res) => {
+    try {
+        const user = await User.findOne({ username: req.params.username });
+        
+        if (!user) {
+            return res.status(404).send('User not found');
+        }
+
+        const userId = user._id;
+        const connections = await Connection.find({
+            $or: [{ user1: userId }, { user2: userId }]
+        });
+        
+        if (connections.length > 0) {
+            res.json(connections);
+        } else {
+            res.status(404).send('No connections found for this user');
+        }
+    } catch (error) {
+        res.status(500).send('Internal Server Error');
+    }
+});
+
+
+// Route to update a connection by its ID
+router.put('/connections/:connectionId', ensureAdmin, async (req, res) => {
+    try {
+        const updatedConnection = await Connection.findByIdAndUpdate(req.params.connectionId, req.body, { new: true });
+        if (updatedConnection) {
+            res.json(updatedConnection);
+        } else {
+            res.status(404).send('Connection not found');
+        }
+    } catch (error) {
+        res.status(500).send('Internal Server Error');
+    }
+});
+
+// Route to delete a connection by its ID
+router.delete('/connections/:connectionId', ensureAdmin, async (req, res) => {
+    try {
+        const deletedConnection = await Connection.findByIdAndDelete(req.params.connectionId);
+        if (deletedConnection) {
+            res.json({ message: 'Connection deleted successfully' });
+        } else {
+            res.status(404).send('Connection not found');
         }
     } catch (error) {
         res.status(500).send('Internal Server Error');
