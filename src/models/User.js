@@ -137,6 +137,10 @@ const userSchema = new mongoose.Schema({
     youtube: String,
     website: String,
   },
+  isAdmin: {
+    type: Boolean,
+    default: false
+},
 });
 
 // Hashing the password before saving

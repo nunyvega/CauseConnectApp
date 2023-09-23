@@ -3,7 +3,7 @@ const expect = chai.expect;
 const app = require('../src/index.js');
 const session = require("express-session");
 
-const ensureAuthenticated = require("../src/middleware/authMiddleware");
+const { ensureAuthenticated } = require("../src/middleware/authMiddleware");
 app.use(session({
     secret: 'secret',
     resave: false,

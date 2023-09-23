@@ -4,7 +4,7 @@ const upload = require("../multerConfig");
 const router = express.Router();
 const User = require("../models/User");
 const languageToFlag = require("../public/js/languageToFlag");
-const ensureAuthenticated = require("../middleware/authMiddleware");
+const { ensureAuthenticated } = require("../middleware/authMiddleware");
 
 // Update user preferences with potential profile picture upload
 router.post(

@@ -98,6 +98,7 @@ function generateUsers(numberOfUsers) {
     // Add an admin user
     users.push(new User({
         username: 'admin',
+        isAdmin: true,
         password: hashedPass,
         name: faker.name.findName(),
         age: faker.datatype.number({ min: 18, max: 80 }),

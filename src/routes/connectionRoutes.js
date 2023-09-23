@@ -4,7 +4,7 @@ const userController = require("../controllers/userController");
 const router = express.Router();
 const User = require("../models/User");
 const Connection = require("../models/Connection");
-const ensureAuthenticated = require("../middleware/authMiddleware");
+const { ensureAuthenticated } = require("../middleware/authMiddleware");
 
 // Mark a user as met
 router.post("/markMet", ensureAuthenticated, connectionController.markMet);
