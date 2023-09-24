@@ -19,10 +19,12 @@
     <ul>
         <!-- Display message if no users met -->
         <% if(users.length === 0) { %>
-            <li>
+            <li class="no-users">
                 <p class="no-users-message">You haven't met any members yet.</p>
-                <a href="/recommendations" class="button cta-button">Meet more members</a>
-                <a href="/" class="button cta-button">Go back home</a>
+                <div class="button-wrapper">
+                    <a href="/recommendations" class="button cta-button">Meet more members</a>
+                    <a href="/" class="button cta-button">Go back home</a>
+                </div>
             </li>
         <% } %>
 

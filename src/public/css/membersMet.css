@@ -109,3 +109,27 @@ img {
 .contact-detail i {
   margin-right: 10px;
 }
+
+/* Button wrapper styles */
+.button-wrapper, .no-users {
+  justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+  width:80%;
+}
+
+/* Adjustments for smaller screens */
+@media (max-width: 480px) {
+  .button-wrapper, .no-users {
+    width: 90%;
+  }
+
+  .button {
+    width: 80%;
+    margin: 5px 0;
+    font-size:medium;
+
+  }
+}
