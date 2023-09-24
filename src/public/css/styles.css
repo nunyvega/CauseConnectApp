@@ -11,8 +11,7 @@ p, h1, h2, h3, .button {
 }
 
 a {
-  text-decoration: none;
-  color: #b3c96b;
+  color: #474140;
   font-weight: bold;
 }
 
@@ -75,6 +74,7 @@ button[type="submit"],
   cursor: pointer;
   background-color: #b3c96b;
   transition: background-color 0.3s, transform 0.3s;
+  text-transform: uppercase;
 }
 
 button[type="submit"]:hover,
@@ -151,7 +151,7 @@ img {
 .page-title {
   text-align: center;
   margin: 40px 0;
-  color: #b3c96b;
+  color: #474140;
 }
 
 .page-title-no-background {
@@ -159,7 +159,7 @@ img {
 }
 
 .page-subtitle {
-  color: #b3c96b;
+  color: #474140;
   margin: auto auto 15px auto;
 }
 

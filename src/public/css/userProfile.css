@@ -81,18 +81,16 @@ body.with-background {
     border-top: 1px solid #eee;
     margin-top: 20px;
     padding-top: 20px;
+
+  }
+  .contact-section a {
+    color: #474140;
   }
   
   h3 {
     font-size: 20px;
     margin-bottom: 15px;
     margin-top: 35px;
-  }
-  
-  /* Link styles */
-  a {
-    color: #0077cc;
-    text-decoration: none;
   }
   
   a:hover {
@@ -136,6 +134,9 @@ body.with-background {
     transition: color 0.3s ease;
 }
 
+/* Social media icons hover styles, simple animation */
 .social-media-icons a:hover {
-    color: #0077cc;
+    color: #a7cb30;
+    font-size: 50px;
+    transition: color 0.3s ease, font-size 0.3s ease;
 }
