@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "seed": "node src/scripts/seedUsers.js",
     "test": "mocha --exit",
     "start": "node src/index.js",
     "dev": "nodemon src/index.js"
