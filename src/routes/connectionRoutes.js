@@ -15,7 +15,7 @@ router.post("/markUnmet", ensureAuthenticated, connectionController.markUnmet);
 // Retrieve and group users by the first letter of their name
 router.get("/mark-met", ensureAuthenticated, async (req, res) => {
   try {
-    const users = await User.find().sort({name: 1});
+    const users = await User.find().sort({ name: 1 });
     const connections = await Connection.find({
       $or: [{ user1: req.user._id }, { user2: req.user._id }],
     });
@@ -48,9 +48,17 @@ router.get("/mark-met", ensureAuthenticated, async (req, res) => {
 });
 
 // Retrieve members that the current user has met
-router.get("/members-met", ensureAuthenticated, connectionController.getMetMembers);
+router.get(
+  "/members-met",
+  ensureAuthenticated,
+  connectionController.getMetMembers
+);
 
 // Retrieve recommended users for the current user
-router.get("/recommendations", ensureAuthenticated, userController.getRecommendedUsers);
+router.get(
+  "/recommendations",
+  ensureAuthenticated,
+  userController.getRecommendedUsers
+);
 
 module.exports = router;

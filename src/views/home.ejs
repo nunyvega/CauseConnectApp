@@ -1,51 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CauseConnect</title>
     <link rel="icon" href="/icon.png" />
     <link rel="stylesheet" href="/css/styles.css" />
     <link rel="stylesheet" href="/css/home.css" />
-</head>
-<body class="with-background">
+  </head>
+  <body class="with-background">
     <!-- Include the header partial -->
     <%- include('partials/header') %>
 
     <div class="main-section">
-        <!-- Percentage circle display -->
-        <div class="percentage-circle-container" data-percentage="<%= percentageMet %>">
-            <svg class="progress-ring" width="210" height="210">
-                <circle class="progress-ring__circle" stroke="#fff" stroke-width="10" fill="transparent" r="100" cx="105" cy="105" />
-                <circle class="progress-ring__progress" stroke="#b3c96b" stroke-width="10" fill="transparent" r="100" cx="105" cy="105" />
-            </svg>
-            <div class="percentage-text">
-                <span class="percentage-value"><%= percentageMet.toFixed(0) %></span>%
-            </div>
+      <!-- Percentage circle display -->
+      <div
+        class="percentage-circle-container"
+        data-percentage="<%= percentageMet %>"
+      >
+        <svg class="progress-ring" width="210" height="210">
+          <circle
+            class="progress-ring__circle"
+            stroke="#fff"
+            stroke-width="10"
+            fill="transparent"
+            r="100"
+            cx="105"
+            cy="105"
+          />
+          <circle
+            class="progress-ring__progress"
+            stroke="#b3c96b"
+            stroke-width="10"
+            fill="transparent"
+            r="100"
+            cx="105"
+            cy="105"
+          />
+        </svg>
+        <div class="percentage-text">
+          <span class="percentage-value"><%= percentageMet.toFixed(0) %></span>%
         </div>
+      </div>
 
-        <!-- Members met progress bar -->
-        <div class="members-met" style="background-image: linear-gradient(to right, #b3c96b 0%, #b3c96b <%= percentageMet %>%, #ccd5ae <%= percentageMet %>%, #ccd5ae 100%);">
-            <p>
-                <%= Math.round(percentageMet * totalUsers / 100) %> of <%= totalUsers %> members met
-            </p>
-        </div>
+      <!-- Members met progress bar -->
+      <div
+        class="members-met"
+        style="
+          background-image: linear-gradient(
+            to right,
+            #b3c96b 0%,
+            #b3c96b <%= percentageMet %>%,
+            #ccd5ae <%= percentageMet %>%,
+            #ccd5ae 100%
+          );
+        "
+      >
+        <p>
+          <%= Math.round(percentageMet * totalUsers / 100) %> of <%= totalUsers
+          %> members met
+        </p>
+      </div>
 
-        <!-- Did you know section -->
-        <div class="statistic">
-            <p><span role="img" aria-label="lightbulb">💡</span> <strong>Did you know?</strong></p>
-            <p><%= statisticToShow %></p>
-        </div>
+      <!-- Did you know section -->
+      <div class="statistic">
+        <p>
+          <span role="img" aria-label="lightbulb">💡</span>
+          <strong>Did you know?</strong>
+        </p>
+        <p><%= statisticToShow %></p>
+      </div>
 
-        <!-- Call to action buttons -->
-        <div class="cta-buttons">
-            <a href="/recommendations" class="button cta-button">Meet more members</a>
-            <a href="/members-met" class="button cta-button">Members you met</a>
-            <a href="/mark-met" class="button cta-button">Update members met</a>
-        </div>
+      <!-- Call to action buttons -->
+      <div class="cta-buttons">
+        <a href="/recommendations" class="button cta-button"
+          >Meet more members</a
+        >
+        <a href="/members-met" class="button cta-button">Members you met</a>
+        <a href="/mark-met" class="button cta-button">Update members met</a>
+      </div>
     </div>
 
     <!-- Include the home page script -->
     <script src="/js/home.js"></script>
-</body>
+  </body>
 </html>

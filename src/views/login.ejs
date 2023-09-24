@@ -1,58 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/css/styles.css" />
     <title>Login</title>
     <link rel="icon" href="/icon.png" />
-</head>
-<body class="with-background">
+  </head>
+  <body class="with-background">
     <!-- Include the logged-out header partial -->
     <%- include('partials/header-logged-out') %>
 
     <!-- Login form container -->
     <div class="login-container content-with-background">
-        <h1 class="page-title">Login</h1>
+      <h1 class="page-title login">Login</h1>
+      <!-- Display success message if any -->
+      <% if (locals.success_msg) { %>
+      <div class="alert alert-success"><%= success_msg %></div>
+      <% } %>
 
-        <!-- Display success message if any -->
-        <% if (locals.success_msg) { %>
-            <div class="alert alert-success"><%= success_msg %></div>
-        <% } %>
+      <!-- Display error message if any -->
+      <% if (error) { %>
+      <div class="error-message"><%= error %></div>
+      <% } %>
 
-        <!-- Display error message if any -->
-        <% if (error) { %>
-            <div class="error-message"><%= error %></div>
-        <% } %>
+      <!-- Login form -->
+      <h3 class="page-subtitle login">
+        Connect with the people helping in your community!
+      </h3>
+      <form action="/login" method="post">
+        <div class="form-group">
+          <label for="username">Username:</label>
+          <input type="text" name="username" id="username" required />
+        </div>
+        <div class="form-group">
+          <label for="password">Password:</label>
+          <input type="password" name="password" id="password" required />
+        </div>
+        <button type="submit">Login</button>
+      </form>
 
-        <!-- Login form -->
-        <form action="/login" method="post">
-            <div class="form-group">
-                <label for="username">Username:</label>
-                <input type="text" name="username" id="username" required />
-            </div>
-            <div class="form-group">
-                <label for="password">Password:</label>
-                <input type="password" name="password" id="password" required />
-            </div>
-            <button type="submit">Login</button>
-        </form>
-
-        <!-- Registration link -->
-        <p>Don't have an account? <a href="/register">Register</a></p>
+      <!-- Registration link -->
+      <p>Don't have an account? <a href="/register">Register</a></p>
     </div>
 
     <!-- Seed script section for testing -->
     <div class="create-users content-with-background login-container">
-        <form action="/run-seed" method="post" id="seedForm">
-            <h2 class="page-subtitle">Testing login details:</h2>
-            <button type="submit">Run Seed Script</button>
-            <p>This button automatically creates users to test the app.</p>
-            <p>The admin user always exists:</p>
-            <p>User: <code> admin </code></p>
-            <p>Password: <code> admin </code></p>
-            <p>All other users have the password <code> admin </code> </p>
-        </form>
+      <form action="/run-seed" method="post" id="seedForm">
+        <h2 class="page-subtitle">Testing login details:</h2>
+        <button class="seed" type="submit">Run Seed Script</button>
+        <p>This button automatically creates users to test the app.</p>
+        <p>The admin user always exists:</p>
+        <p>User: <code> admin </code></p>
+        <p>Password: <code> admin </code></p>
+        <p>All other users have the password <code> admin </code></p>
+      </form>
     </div>
-</body>
+  </body>
 </html>

@@ -1,13 +1,17 @@
 /* Global Styles */
 body {
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   margin: 0;
   padding: 0;
   background-color: #f5f5f5;
 }
 
-p, h1, h2, h3, .button {
-  font-family: 'Roboto', sans-serif;
+p,
+h1,
+h2,
+h3,
+.button {
+  font-family: "Roboto", sans-serif;
 }
 
 a {
@@ -22,7 +26,7 @@ a:hover {
 /* Login Container Styles */
 .login-container {
   width: 300px;
-  margin: 50px auto;
+  margin: 50px auto 20px auto;
   padding: 30px;
   border: 1px solid #ddd;
   background-color: #ffffff;
@@ -120,7 +124,8 @@ img {
   align-items: center;
 }
 
-.username, .name {
+.username,
+.name {
   color: #444;
   margin-left: 5px;
 }
@@ -132,7 +137,7 @@ img {
   background-repeat: no-repeat;
   background-attachment: fixed;
   height: 100vh;
-  position: relative; 
+  position: relative;
 }
 
 .with-background:after {
@@ -154,6 +159,10 @@ img {
   color: #474140;
 }
 
+.page-title.login {
+  margin: 10px 0;
+}
+
 .page-title-no-background {
   color: #fff;
 }
@@ -163,8 +172,23 @@ img {
   margin: auto auto 15px auto;
 }
 
+.page-subtitle.login {
+  margin: 0 0 15px 0;
+  padding: 0;
+}
+
+.seed {
+  margin-bottom: 10px;
+}
+
+.create-users {
+  margin: 0 auto;
+}
+
 .create-users p {
   text-align: left;
+  line-height: 1.2;
+  margin: 0;
 }
 
 code {

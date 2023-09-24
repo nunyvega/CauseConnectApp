@@ -9,7 +9,9 @@ form {
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
 
-label, input, select {
+label,
+input,
+select {
   display: block;
   margin-bottom: 1rem;
 }
@@ -28,7 +30,7 @@ legend {
 
 /* Success message styles */
 .success-message {
-  background-color: #e0f2e9; 
+  background-color: #e0f2e9;
   border: 1px solid #b2d8b2;
   padding: 1rem;
   margin: 1rem 0;
@@ -59,7 +61,7 @@ legend {
 }
 
 #profilePicture {
-  margin:  auto;
+  margin: auto;
 }
 
 label i {
@@ -71,7 +73,7 @@ label i {
 #personalBio {
   height: 200px;
   width: 100%;
-  border-color: rgb(204,204,204);
+  border-color: rgb(204, 204, 204);
   border-radius: 5px;
 }
 
@@ -79,12 +81,12 @@ label i {
 #age {
   padding: 10px;
   width: 100%;
-  border-color: rgb(204,204,204);
+  border-color: rgb(204, 204, 204);
   border-width: inherit;
   border-radius: 5px;
 }
 
 /* Checkbox styles, for all other fields */
-input[type=checkbox] {
-  accent-color: #b2d8b2;  
+input[type="checkbox"] {
+  accent-color: #b2d8b2;
 }

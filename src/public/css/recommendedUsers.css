@@ -33,7 +33,8 @@
 }
 
 /* User name and username styles */
-.name, .username {
+.name,
+.username {
   text-align: center;
   margin: 1rem 0;
 }
@@ -126,12 +127,11 @@ meter::-webkit-meter-optimum-value {
 }
 
 /* Profile button link styles */
-.view-profile{
-display:flex;
-
+.view-profile {
+  display: flex;
 }
 .profile-button {
-  width:100%;
+  width: 100%;
   text-align: center;
   margin: 10px;
 }

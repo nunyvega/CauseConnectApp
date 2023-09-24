@@ -61,6 +61,7 @@ img {
 
 /* Button styles */
 .button {
+  text-decoration: none;
   background-color: #b3c96b;
   color: #fff;
   margin: 10px 0;
@@ -69,13 +70,13 @@ img {
   border-radius: 5px;
   padding: 7px 15px;
   text-align: center;
-  transition: background-color 0.3s, transform 0.1s;
+  transition: background-color 0.3s;
   white-space: nowrap; /* Prevents the button from breaking into two lines when screen is small */
 }
 
 .button:hover {
+  text-decoration: none;
   background-color: #a7cb30;
-  transform: scale(1.05); 
 }
 
 .contact-info-btn {
@@ -113,27 +114,27 @@ img {
 }
 
 /* Button wrapper styles */
-.button-wrapper, .no-users {
+.button-wrapper,
+.no-users {
   justify-content: center;
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
   margin-top: 10px;
-  width:80%;
+  width: 80%;
 }
-
-
 
 /* Adjustments for smaller screens */
 @media (max-width: 480px) {
-  .button-wrapper, .no-users {
+  .button-wrapper,
+  .no-users {
     width: 90%;
   }
 
   .button {
     width: 80%;
     margin: 10px;
-    font-size:medium;
+    font-size: medium;
   }
 
   .button-container {

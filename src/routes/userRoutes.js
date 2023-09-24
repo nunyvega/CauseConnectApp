@@ -15,41 +15,45 @@ router.post(
 );
 
 // Render the user preferences page
-router.get("/preferences", ensureAuthenticated, userController.renderPreferencesPage);
+router.get(
+  "/preferences",
+  ensureAuthenticated,
+  userController.renderPreferencesPage
+);
 
 // Render the profile of the currently logged-in user
-router.get('/profile', ensureAuthenticated, async (req, res) => {
+router.get("/profile", ensureAuthenticated, async (req, res) => {
   try {
     const user = await User.findOne({ username: req.user.username });
     if (!user) {
-      res.status(404).send('User not found');
+      res.status(404).send("User not found");
     } else {
-      res.render('profile', { 
+      res.render("profile", {
         user: user,
         currentUser: req.user.username,
         languageToFlag: languageToFlag,
       });
     }
   } catch (error) {
-    res.status(500).send('Server error'); 
+    res.status(500).send("Server error");
   }
 });
 
 // Render the profile of a user specified by username
-router.get('/:username', ensureAuthenticated, async (req, res) => {
+router.get("/:username", ensureAuthenticated, async (req, res) => {
   try {
     const user = await User.findOne({ username: req.params.username });
     if (!user) {
-      res.status(404).send('User not found');
+      res.status(404).send("User not found");
     } else {
-      res.render('profile', { 
+      res.render("profile", {
         user: user,
         currentUser: req.user.username,
         languageToFlag: languageToFlag,
       });
     }
   } catch (error) {
-    res.status(500).send('Server error'); 
+    res.status(500).send("Server error");
   }
 });
 

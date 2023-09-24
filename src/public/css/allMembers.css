@@ -85,9 +85,7 @@ button.met-unmet {
   min-width: 140px;
 }
 
-
-
 .section {
   justify-content: center;
   flex-wrap: wrap;
- }
+}

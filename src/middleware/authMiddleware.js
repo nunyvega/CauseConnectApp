@@ -32,7 +32,11 @@ function ensureAdmin(req, res, next) {
     if (req.user.isAdmin) {
       return next(); // If user is an admin, proceed to the next middleware or route handler
     } else {
-      res.status(403).send('Forbidden: You do not have the required permissions, you need to be an admin to use the API endpoints.');
+      res
+        .status(403)
+        .send(
+          "Forbidden: You do not have the required permissions, you need to be an admin to use the API endpoints."
+        );
     }
   } else {
     req.flash("error", "Please log in to view this page.");
@@ -42,5 +46,5 @@ function ensureAdmin(req, res, next) {
 
 module.exports = {
   ensureAuthenticated,
-  ensureAdmin
+  ensureAdmin,
 }; // Export the middleware functions
