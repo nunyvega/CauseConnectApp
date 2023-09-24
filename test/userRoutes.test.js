@@ -5,9 +5,27 @@ const expect = chai.expect;
 
 chai.use(chaiHttp);
 
+const agent = chai.request.agent(app);
+
+before(function(done) {
+    this.timeout(30000); // Set the timeout to 30 seconds
+    agent
+        .post('/login')
+        .send({ username: 'admin', password: 'admin' })
+        .end((err, res) => {
+            if (err) {
+                return done(err);
+            }
+            expect(res).to.have.status(200);
+            done();
+        });
+});
+
+
+
 describe('User Routes', () => {
 
-    describe('GET /login', () => {
+    describe('Login page', () => {
         it('should render the login page', (done) => {
             chai.request(app)
                 .get('/login')
@@ -19,7 +37,7 @@ describe('User Routes', () => {
         });
     });
 
-    describe('GET /register', () => {
+    describe('Register page', () => {
         it('should render the register page', (done) => {
             chai.request(app)
                 .get('/register')
@@ -44,7 +62,7 @@ describe('User Routes', () => {
         });
     });
 
-    describe('GET /', () => {
+    describe('Homepage limited access', () => {
         it('should redirect to login page if not authenticated', (done) => {
             chai.request(app)
                 .get('/')
@@ -57,7 +75,7 @@ describe('User Routes', () => {
         });
     });
 
-    describe('Users API ', () => {
+    describe('Users API limited accesibility ', () => {
         it('Not accessible without auth', (done) => {
             chai.request(app)
                 .get('/api/users')
@@ -71,3 +89,65 @@ describe('User Routes', () => {
     });
 
 });
+
+describe('Preferences form page', () => {
+    it('should render the user preferences page when authenticated', (done) => {
+        agent
+            .get('/user/preferences')
+            .end((err, res) => {
+                expect(res).to.have.status(200);
+                expect(res.text).to.include('Preferences');
+                done();
+            });
+    });
+});
+
+describe('Homepage', () => {
+    it('should render the home page when authenticated', (done) => {
+        agent
+            .get('/')
+            .end((err, res) => {
+                expect(res).to.have.status(200);
+                expect(res.text).to.include('met');
+                done();
+            });
+    });
+});
+
+describe('All Users API for admin user ', () => {
+    it('Accessible with auth', (done) => {
+        agent
+            .get('/api/users')
+            .end((err, res) => {
+                expect(res).to.have.status(200);
+                done();
+            });
+    });
+});
+
+describe('Test profile page for current user', () => {
+    it('should render the profile of the currently logged-in user', (done) => {
+        agent
+            .get('/user/profile')
+            .end((err, res) => {
+                expect(res).to.have.status(200);
+                expect(res.text).to.include('Bio'); 
+                done();
+            });
+    });
+});
+
+describe('Test other users\' profile page', () => {
+    it('should render the profile of a user specified by username', (done) => {
+        agent
+            .get('/user/admin2')
+            .end((err, res) => {
+                expect(res).to.have.status(200);
+                expect(res.text).to.include('Bio');
+                done();
+            });
+    });
+});
+
+after(() => agent.close());
+

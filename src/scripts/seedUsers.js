@@ -39,6 +39,7 @@ function clearCollections() {
         console.log('All documents in the Connection collection have been deleted.');
     });
 }
+
 /**
  * Generate random items for user attributes
  */
@@ -95,9 +96,21 @@ function generateUsers(numberOfUsers) {
         }));
     }
 
-    // Add an admin user
-    users.push(new User({
-        username: 'admin',
+    // Add admin users
+    users.push(createAdminUser('admin'));
+    users.push(createAdminUser('admin2')); // Add a second admin user
+
+    return User.insertMany(users).then(docs => {
+        console.log(`Inserted ${docs.length} users.`);
+    });
+}
+
+/**
+ * Helper function to create an admin user
+ */
+function createAdminUser(username) {
+    return new User({
+        username: username,
         isAdmin: true,
         password: hashedPass,
         name: faker.name.findName(),
@@ -117,26 +130,23 @@ function generateUsers(numberOfUsers) {
         },
         personalBlogOrWebsite: faker.internet.url(),
         socialMedia: {
-            facebook: 'https://facebook.com/admin',
-            twitter: 'https://twitter.com/admin',
-            instagram: 'https://instagram.com/admin',
-            linkedin: 'https://linkedin.com/admin',
-            youtube: 'https://youtube.com/admin',
+            facebook: 'https://facebook.com/' + username,
+            twitter: 'https://twitter.com/' + username,
+            instagram: 'https://instagram.com/' + username,
+            linkedin: 'https://linkedin.com/' + username,
+            youtube: 'https://youtube.com/' + username,
             website: faker.internet.url(),
         }
-    }));
-
-    return User.insertMany(users).then(docs => {
-        console.log(`Inserted ${docs.length} users.`);
     });
 }
 
 /**
- * Generate connections for the admin user
+ * Generate connections for the admin users
  */
 function generateConnectionsForAdmin() {
-    return User.findOne({ username: 'admin' }).then(adminUser => {
-        return createConnectionsUsingAdminId(adminUser._id);
+    return User.find({ username: { $in: ['admin', 'admin2'] } }).then(adminUsers => {
+        const adminIds = adminUsers.map(user => user._id);
+        return Promise.all(adminIds.map(adminId => createConnectionsUsingAdminId(adminId)));
     });
 }
 
