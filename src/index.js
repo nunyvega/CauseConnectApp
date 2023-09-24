@@ -69,11 +69,9 @@ passport.deserializeUser(async (id, done) => {
 });
 
 // MongoDB connection setup
-const mongoUri = process.env.MONGODB_URI;
-const mongoLocalUri = "mongodb://localhost/CauseConnect";
+const mongoUri = process.env.MONGODB_URI || "mongodb://localhost/CauseConnect";
 
-mongoose
-  .connect(mongoUri ? mongoUri : mongoLocalUri, {
+mongoose.connect(mongoUri, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })

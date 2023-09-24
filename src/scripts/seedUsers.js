@@ -9,11 +9,9 @@ require("dotenv").config();
 const hashedPass = bcrypt.hashSync("admin", 10);
 
 // Connect to MongoDB and seed data
-const mongoUri = process.env.MONGODB_URI;
-const mongoLocalUri = "mongodb://localhost/CauseConnect";
+const mongoUri = process.env.MONGODB_URI || "mongodb://localhost/CauseConnect";
 
-mongoose
-  .connect(mongoUri ? mongoUri : mongoLocalUri, {
+mongoose.connect(mongoUri, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
