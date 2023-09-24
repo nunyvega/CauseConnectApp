@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "seed": "node src/scripts/seedUsers.js",
-    "test": "mocha --exit",
+    "test": "npm run seed && mocha --exit",
     "start": "node src/index.js",
     "dev": "nodemon src/index.js"
   },
