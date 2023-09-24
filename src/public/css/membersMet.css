@@ -82,7 +82,7 @@ img {
   background-color: transparent;
   color: #b3c96b;
   border: 1px solid #b3c96b;
-  margin-right: 10px;
+  margin: 10px;
 }
 
 .contact-info-btn:hover {
@@ -104,6 +104,8 @@ img {
   margin: 10px 0;
   display: flex;
   align-items: center;
+  overflow-wrap: anywhere;
+  font-size: small;
 }
 
 .contact-detail i {
@@ -120,6 +122,8 @@ img {
   width:80%;
 }
 
+
+
 /* Adjustments for smaller screens */
 @media (max-width: 480px) {
   .button-wrapper, .no-users {
@@ -128,8 +132,11 @@ img {
 
   .button {
     width: 80%;
-    margin: 5px 0;
+    margin: 10px;
     font-size:medium;
+  }
 
+  .button-container {
+    display: flex;
   }
 }
