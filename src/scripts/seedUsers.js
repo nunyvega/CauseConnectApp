@@ -12,7 +12,7 @@ const hashedPass = bcrypt.hashSync('admin', 10);
 const mongoUri = process.env.MONGODB_URI;
 const mongoLocalUri = "mongodb://localhost/CauseConnect";
 
-mongoose.connect(mongoUri, {
+mongoose.connect(mongoLocalUri, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 })
